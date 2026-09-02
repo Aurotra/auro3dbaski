@@ -4,22 +4,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
-type NetworkInformation = {
-  saveData?: boolean;
-  effectiveType?: string;
-};
-
-function skipBackgroundVideo(): boolean {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return true;
-  }
-  const connection = (navigator as Navigator & { connection?: NetworkInformation })
-    .connection;
-  if (connection?.saveData) return true;
-  const type = connection?.effectiveType;
-  return type === "slow-2g" || type === "2g";
-}
-
 export function LoopVideo({
   src,
   poster,
@@ -33,78 +17,43 @@ export function LoopVideo({
   priority?: boolean;
   sizes?: string;
 }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [activeSrc, setActiveSrc] = useState<string | null>(null);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    if (skipBackgroundVideo()) return;
-    const node = wrapRef.current;
-    if (!node) return;
-
-    let cancelled = false;
-    let idleId = 0;
-    let timeoutId = 0;
-
-    const begin = () => {
-      if (cancelled) return;
-      const run = () => {
-        if (!cancelled) setActiveSrc(src);
-      };
-      if (typeof window.requestIdleCallback === "function") {
-        idleId = window.requestIdleCallback(run, { timeout: 2000 });
-      } else {
-        timeoutId = window.setTimeout(run, 1);
-      }
-    };
-
-    const arm = () => {
-      if (document.readyState === "complete") begin();
-      else window.addEventListener("load", begin, { once: true });
-    };
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          io.disconnect();
-          arm();
-        }
-      },
-      { rootMargin: "160px" },
-    );
-    io.observe(node);
-
-    return () => {
-      cancelled = true;
-      io.disconnect();
-      window.removeEventListener("load", begin);
-      if (idleId) window.cancelIdleCallback(idleId);
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
-  }, [src]);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !activeSrc) return;
+    if (!el || reduceMotion) {
+      setPlaying(false);
+      return;
+    }
     el.muted = true;
     const markPlaying = () => setPlaying(true);
     const play = () => {
-      void el.play().catch(() => {
+      void el.play().then(markPlaying).catch(() => {
         /* autoplay kesilirse poster kalır */
       });
     };
     el.addEventListener("playing", markPlaying);
     el.addEventListener("canplay", play);
-    play();
+    if (!el.paused && el.readyState >= 2) markPlaying();
+    else play();
     return () => {
       el.removeEventListener("playing", markPlaying);
       el.removeEventListener("canplay", play);
     };
-  }, [activeSrc]);
+  }, [reduceMotion, src]);
 
   return (
-    <div ref={wrapRef} className={cn("relative size-full overflow-hidden", className)}>
+    <div className={cn("overflow-hidden", className)}>
       <Image
         src={poster}
         alt=""
@@ -113,21 +62,22 @@ export function LoopVideo({
         sizes={sizes}
         className="object-cover"
       />
-      {activeSrc ? (
+      {reduceMotion ? null : (
         <video
           ref={videoRef}
           className={cn(
             "absolute inset-0 size-full object-cover transition-opacity duration-500",
             playing ? "opacity-100" : "opacity-0",
           )}
-          src={activeSrc}
+          src={src}
           muted
           loop
           playsInline
-          preload="none"
+          autoPlay
+          preload={priority ? "auto" : "metadata"}
           aria-hidden="true"
         />
-      ) : null}
+      )}
     </div>
   );
 }

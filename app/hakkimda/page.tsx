@@ -27,32 +27,15 @@ export default function HakkimdaPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(people) }}
       />
-      <div className="grid items-center gap-8 md:grid-cols-2">
-        <div>
-          <h1 className="border-l-4 border-accent pl-4 font-display text-5xl text-text">
-            {story.heading}
-          </h1>
-          <div className="mt-6 space-y-3 text-muted">
-            {story.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </div>
+      <div className="max-w-3xl">
+        <h1 className="border-l-4 border-accent pl-4 font-display text-5xl text-text">
+          {story.heading}
+        </h1>
+        <div className="mt-6 space-y-3 text-muted">
+          {story.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
         </div>
-        <figure className="relative aspect-[4/3] overflow-hidden rounded-md border border-white/10 bg-ink-soft">
-          <Image
-            src="/images/atolye-hero.webp"
-            alt="Atölyede isimlik baskısı — yazıcı kafa ve AMS"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-          <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent px-4 pb-4 pt-10">
-            <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
-              Atölye · isimlik baskısı
-            </span>
-          </figcaption>
-        </figure>
       </div>
 
       <h2 className="mt-16 border-l-4 border-accent pl-4 font-display text-3xl text-text">
