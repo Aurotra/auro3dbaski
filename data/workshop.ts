@@ -40,6 +40,45 @@ export const equipment: Equipment[] = [
   },
 ];
 
+export const workshopShots = [
+  {
+    id: "lambalar",
+    src: "/images/workshop/lambalar.webp",
+    alt: "İki 3D baskı heykelsi masa lambası, yeşil ve turuncu ışık",
+    caption: "Aydınlatma",
+  },
+  {
+    id: "vazo",
+    src: "/images/workshop/vazo.webp",
+    alt: "Burgulu geometrili vazo ve kırmızı 3D baskı güller, yazıcının yanında",
+    caption: "Dekor",
+  },
+  {
+    id: "keman",
+    src: "/images/workshop/keman.webp",
+    alt: "3D baskı keman, kesim matı üzerinde",
+    caption: "Keman",
+  },
+  {
+    id: "tekneler",
+    src: "/images/workshop/tekneler.webp",
+    alt: "Turuncu ve mavi 3D baskı tekne modelleri ile Wankel motor",
+    caption: "Model",
+  },
+  {
+    id: "sardalya",
+    src: "/images/workshop/sardalya.webp",
+    alt: "Not Sardines takı kutuları, dört renk",
+    caption: "Sardalya",
+  },
+  {
+    id: "miras",
+    src: "/images/workshop/miras-kutu.webp",
+    alt: "Turuncu gölge kutusu, minyatür çerçeveler ve figürinler",
+    caption: "Miras",
+  },
+] as const;
+
 export type Milestone = {
   id: string;
   date: string;

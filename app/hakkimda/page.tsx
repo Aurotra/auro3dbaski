@@ -2,7 +2,8 @@ import Image from "next/image";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { story, team } from "@/data/team";
-import { equipment, timeline } from "@/data/workshop";
+import { equipment, timeline, workshopShots } from "@/data/workshop";
+import { LoopVideo } from "@/components/media/loop-video";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
@@ -39,17 +40,14 @@ export default function HakkimdaPage() {
           </div>
         </div>
         <figure className="relative aspect-[4/3] overflow-hidden rounded-md border border-white/10 bg-ink-soft">
-          <Image
-            src="/images/atolye-hero.webp"
-            alt="Auro 3D Baskı atölyesi — FDM ve SLA üretim ortamı"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+          <LoopVideo
+            src="/videos/atolye.mp4"
+            poster="/images/atolye-hero.webp"
+            className="absolute inset-0"
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent px-4 pb-4 pt-10">
             <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
-              Atölye · FDM / SLA
+              Atölye · isimlik baskısı
             </span>
           </figcaption>
         </figure>
@@ -104,6 +102,33 @@ export default function HakkimdaPage() {
               <h3 className="font-display text-xl text-text">{e.name}</h3>
               <p className="mt-2 text-sm text-muted">{e.use}</p>
             </Card>
+          </li>
+        ))}
+      </ul>
+
+      <h2 className="mt-16 border-l-4 border-accent pl-4 font-display text-3xl text-text">
+        Atölyeden çıkanlar
+      </h2>
+      <p className="mt-2 text-sm text-muted">
+        Kendi çekimlerimiz — lamba, keman, tekne, sardalya kutusu, miras kutusu.
+      </p>
+      <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {workshopShots.map((shot) => (
+          <li key={shot.id}>
+            <figure className="overflow-hidden rounded-md border border-white/10 bg-ink-soft">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <figcaption className="px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-accent">
+                {shot.caption}
+              </figcaption>
+            </figure>
           </li>
         ))}
       </ul>

@@ -1,21 +1,16 @@
 import { BrandLogo } from "@/components/brand/logo";
+import { LoopVideo } from "@/components/media/loop-video";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
 export function Hero() {
   return (
     <section className="relative flex min-h-[75vh] items-end overflow-hidden">
-      <video
-        className="absolute inset-0 size-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/posters/hero.svg"
-        aria-hidden="true"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      <LoopVideo
+        src="/videos/hero.mp4"
+        poster="/posters/hero.webp"
+        className="absolute inset-0"
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-20">
         <BrandLogo href={null} size="lg" />

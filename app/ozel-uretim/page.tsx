@@ -1,5 +1,6 @@
 import { FaqAccordion } from "@/components/content/faq-accordion";
 import { QuoteForm } from "@/components/forms/quote-form";
+import { LoopVideo } from "@/components/media/loop-video";
 import { Card } from "@/components/ui/card";
 import {
   productionFaq,
@@ -17,13 +18,29 @@ export const metadata = pageMeta({
 export default function Page() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
-      <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
-        Özel ve toplu üretim
-      </h1>
-      <p className="mt-4 max-w-2xl text-muted">
-        Prototip, yedek parça, kısa seri, tersine mühendislik. FDM ve SLA.
-        Tek parça da olur, tekrarlayan iş de.
-      </p>
+      <div className="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
+            Özel ve toplu üretim
+          </h1>
+          <p className="mt-4 max-w-2xl text-muted">
+            Prototip, yedek parça, kısa seri, tersine mühendislik. FDM ve SLA.
+            Tek parça da olur, tekrarlayan iş de.
+          </p>
+        </div>
+        <figure className="relative aspect-[3/4] max-h-[520px] overflow-hidden rounded-md border border-white/10 bg-ink-soft lg:justify-self-end lg:w-full">
+          <LoopVideo
+            src="/videos/uretim.mp4"
+            poster="/images/uretim.webp"
+            className="absolute inset-0"
+          />
+          <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent px-4 pb-4 pt-10">
+            <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
+              Çok renk · kafes geometri
+            </span>
+          </figcaption>
+        </figure>
+      </div>
       <ul className="mt-10 grid gap-3 sm:grid-cols-5">
         {productionSteps.map((s) => (
           <li key={s.n} className="rounded-md border border-white/10 bg-ink-soft p-4">

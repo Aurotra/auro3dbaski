@@ -25,7 +25,7 @@ export const series: Series[] = [
     slug: "miras-modelleme",
     title: "Miras Modelleme",
     summary: "Eski bir parçayı ölçüp yeniden basılabilir hale getirmek.",
-    coverUrl: "/posters/seri-miras.svg",
+    coverUrl: "/images/workshop/miras-cover.webp",
     episodeCount: 0, // TODO: bölüm sayısı
   },
   {
@@ -39,7 +39,7 @@ export const series: Series[] = [
     slug: "keman-serisi",
     title: "Keman Serisi",
     summary: "Müzik aleti parçalarında tolerans ve malzeme seçimi.",
-    coverUrl: "/posters/seri-keman.svg",
+    coverUrl: "/images/workshop/keman-cover.webp",
     episodeCount: 0, // TODO: bölüm sayısı
   },
 ];
