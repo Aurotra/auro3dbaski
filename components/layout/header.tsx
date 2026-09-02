@@ -46,7 +46,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button href="/ozel-uretim" className="ml-2">
+          <Button href="/iletisim" className="ml-2">
             Teklif
           </Button>
         </nav>
@@ -79,6 +79,9 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
+          <Button href="/iletisim" className="mt-4 w-full">
+            Teklif
+          </Button>
         </nav>
       ) : null}
       <div className="glow-bar h-0.5 w-full" aria-hidden="true" />

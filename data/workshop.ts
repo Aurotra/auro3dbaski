@@ -26,34 +26,19 @@ export const equipment: Equipment[] = [
   {
     id: "flashforge",
     name: "Flashforge",
-    use: "Atölyedeki FDM parkurunda.",
+    use: "Yüksek tekrarlanabilirlikli FDM üretim süreçleri.",
   },
   {
     id: "bambu",
     name: "Bambu Lab",
-    use: "Atölyedeki FDM parkurunda.",
+    use: "Hızlı prototipleme ve mühendislik filamenti (PA-CF, ASA, PC) testleri.",
   },
   {
     id: "elegoo",
     name: "Elegoo",
-    use: "FDM ve SLA reçine üretiminde.",
+    use: "Hassas detaylı SLA reçine baskıları ve büyük hacimli FDM üretimi.",
   },
 ];
-
-export const principles = [
-  {
-    title: "Asla kolay göstermeyiz",
-    body: "Süreç, hata ve düzeltme dahil gösterilir.",
-  },
-  {
-    title: "Her videoda bir kanıt",
-    body: "Söylenen şey fiziksel olarak kamerada kanıtlanır.",
-  },
-  {
-    title: "Doğru cevap bağlama göre değişir",
-    body: "“Hangisi daha iyi” değil, “hangi durumda hangisi” anlatılır.",
-  },
-] as const;
 
 export type Milestone = {
   id: string;

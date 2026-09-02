@@ -8,14 +8,6 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "inline",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [
-      { protocol: "https", hostname: "cdn.shopier.app", pathname: "/**" },
-      {
-        protocol: "https",
-        hostname: "s3.eu-central-1.amazonaws.com",
-        pathname: "/**",
-      },
-    ],
   },
   async headers() {
     return [

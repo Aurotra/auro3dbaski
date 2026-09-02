@@ -10,6 +10,9 @@ export type SocialStats = {
   totalFollowers: number;
 };
 
+/** Sayaç asla bu tabanın altına inmez; platform çekimi düşse bile 7K+ gösterilir. */
+export const MIN_TOTAL_FOLLOWERS = 7000;
+
 function envInt(name: string, fallback: number): number {
   const raw = process.env[name];
   if (!raw) return fallback;
@@ -21,11 +24,29 @@ function fallbacks(): SocialStats {
   const youtube = envInt("STATS_FALLBACK_YOUTUBE", 272);
   const tiktok = envInt("STATS_FALLBACK_TIKTOK", 936);
   const instagram = envInt("STATS_FALLBACK_INSTAGRAM", 4727);
-  return {
+  return withFollowerFloor({
     youtube,
     tiktok,
     instagram,
     totalFollowers: youtube + tiktok + instagram,
+  });
+}
+
+function withFollowerFloor(stats: SocialStats): SocialStats {
+  const youtube = Number.isFinite(stats.youtube) ? Math.max(0, stats.youtube) : 0;
+  const tiktok = Number.isFinite(stats.tiktok) ? Math.max(0, stats.tiktok) : 0;
+  const instagram = Number.isFinite(stats.instagram)
+    ? Math.max(0, stats.instagram)
+    : 0;
+  const summed = youtube + tiktok + instagram;
+  return {
+    youtube,
+    tiktok,
+    instagram,
+    totalFollowers: Math.max(
+      MIN_TOTAL_FOLLOWERS,
+      Number.isFinite(summed) ? summed : 0,
+    ),
   };
 }
 
@@ -164,27 +185,39 @@ async function instagramFollowers(): Promise<number | null> {
 }
 
 async function fetchSocialStatsUncached(): Promise<SocialStats> {
-  const floor = fallbacks();
-  const [youtube, tiktok, instagram] = await Promise.all([
-    youtubeSubscribers().catch(() => null),
-    tiktokFollowers().catch(() => null),
-    instagramFollowers().catch(() => null),
-  ]);
+  try {
+    const floor = fallbacks();
+    const [youtube, tiktok, instagram] = await Promise.all([
+      youtubeSubscribers().catch(() => null),
+      tiktokFollowers().catch(() => null),
+      instagramFollowers().catch(() => null),
+    ]);
 
-  const y = pickCount(youtube) ?? floor.youtube;
-  const t = pickCount(tiktok) ?? floor.tiktok;
-  const i = pickCount(instagram) ?? floor.instagram;
+    const y = pickCount(youtube) ?? floor.youtube;
+    const t = pickCount(tiktok) ?? floor.tiktok;
+    const i = pickCount(instagram) ?? floor.instagram;
 
-  return {
-    youtube: y,
-    tiktok: t,
-    instagram: i,
-    totalFollowers: y + t + i,
-  };
+    return withFollowerFloor({
+      youtube: y,
+      tiktok: t,
+      instagram: i,
+      totalFollowers: y + t + i,
+    });
+  } catch {
+    return fallbacks();
+  }
 }
 
 export const getSocialStats = unstable_cache(
   fetchSocialStatsUncached,
-  ["social-stats-v2"],
+  ["social-stats-v3"],
   { revalidate: 3600 },
 );
+
+export async function getSocialStatsSafe(): Promise<SocialStats> {
+  try {
+    return withFollowerFloor(await getSocialStats());
+  } catch {
+    return fallbacks();
+  }
+}

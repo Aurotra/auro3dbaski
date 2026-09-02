@@ -1,26 +1,9 @@
 import { ProductCard } from "@/components/shop/product-card";
-import { shopierStoreUrl, type ShopierProduct } from "@/data/products";
+import { products, shopierStoreUrl } from "@/data/products";
 
-export function ShopGrid({
-  products,
-  source,
-}: {
-  products: ShopierProduct[];
-  source: "live" | "fallback";
-}) {
+export function ShopGrid() {
   return (
     <>
-      {source === "fallback" ? (
-        <p className="mb-6 max-w-2xl text-sm text-muted">
-          Canlı vitrin şu an Shopier’den çekilemedi. Kartlar mağazadan doğrulanmış
-          son listedir. Ödeme her zaman Shopier üzerinde tamamlanır.
-        </p>
-      ) : (
-        <p className="mb-6 max-w-2xl text-sm text-muted">
-          İlk dört ürün Shopier vitrininden çekilir. Ödeme bu sitede alınmaz;
-          buton ilgili ürün sayfasına gider.
-        </p>
-      )}
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((item) => (
           <ProductCard key={item.id} product={item} />

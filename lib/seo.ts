@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 
+export const ogImage = {
+  url: "/og-default.png",
+  width: 1200,
+  height: 630,
+  alt: `${site.name} — ${site.tagline}`,
+} as const;
+
 export function pageMeta({
   title,
   description,
@@ -11,23 +18,25 @@ export function pageMeta({
   path: string;
 }): Metadata {
   const url = `${site.url}${path}`;
+  const ogTitle = `${title} · ${site.name}`;
   return {
     title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} · ${site.name}`,
+      title: ogTitle,
       description,
       url,
       siteName: site.name,
       locale: site.locale,
       type: "website",
-      images: [{ url: "/og-default.svg" }],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: ogTitle,
       description,
+      images: [ogImage.url],
     },
   };
 }

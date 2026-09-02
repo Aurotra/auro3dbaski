@@ -11,13 +11,14 @@ export type TeamMember = {
 export const team: TeamMember[] = [
   {
     id: "sude",
-    name: "Sude",
-    role: "Mekanik tasarım · CAD · DfAM",
-    photoUrl: "/images/sude.svg",
-    photoAlt: "Sude — mekanik tasarım ve üretim",
+    name: "Sude Can Sümer",
+    role: "Mekanik tasarım · içerik üretimi · marka iletişimi",
+    photoUrl: "/images/team/sude.webp",
+    photoAlt: "Sude Can Sümer — mekanik tasarım, içerik üretimi ve marka iletişimi",
     body: [
       "Makine mühendisliği formasyonuyla projelerin mekanik tasarım, CAD modelleme ve simülasyon aşamalarını yürütüyor.",
       "Eklemeli imalat için tasarım (DfAM) prensiplerini içeriklere entegre ediyor.",
+      "Teknik derinliği koruyarak eklemeli imalat konularını popüler bir dile taşıyor; ürettiği içerikler hem sektör profesyonellerine hem yeni başlayanlara hitap ediyor.",
       "Üretim süreçlerinde estetik ve işlevselliğin dengesini kurarak kanalın yaratıcı projelerinin hayata geçirilmesinde aktif rol alıyor.",
     ],
     tags: ["CAD", "DfAM", "Simülasyon"],
@@ -26,13 +27,14 @@ export const team: TeamMember[] = [
     id: "berk",
     name: "Berk Tepe",
     role: "Ar-Ge · eklemeli imalat · içerik stratejisi",
-    photoUrl: "/images/berk.svg",
-    photoAlt: "Berk Tepe — Ar-Ge ve eklemeli imalat",
+    photoUrl: "/images/team/berk.webp",
+    photoAlt: "Berk Tepe — Ar-Ge, eklemeli imalat ve tersine mühendislik",
     body: [
       "Otomotiv mühendisliği altyapısına sahip olan Berk Tepe; kompozit teknolojileri, eklemeli imalat ve tersine mühendislik alanlarında edindiği Ar-Ge tecrübesini Auro 3D Baskı platformuna aktarıyor.",
       "Farklı FDM ve SLA yazıcıların kalibrasyonu üzerine içerik stratejilerini yönetiyor.",
       "Endüstriyel filamentlerin dayanım testleri ve donanım iyileştirmeleri de aynı stratejinin parçası.",
     ],
+    tags: ["Eklemeli İmalat", "Ar-Ge & Malzeme", "Tersine Mühendislik"],
   },
 ];
 

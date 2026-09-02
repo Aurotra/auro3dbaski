@@ -8,8 +8,8 @@ export function IntroBlock() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
         <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-ink/10 bg-ink-soft">
           <Image
-            src="/images/sude.svg"
-            alt="Sude — atölye"
+            src="/images/team/sude.webp"
+            alt="Sude Can Sümer — atölye"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"

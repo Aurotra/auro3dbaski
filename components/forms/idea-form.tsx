@@ -1,8 +1,12 @@
 "use client";
 
 import { formspreeAction } from "@/lib/site";
+import { FormUnavailable, useFormspreeReady } from "@/components/forms/form-unavailable";
 
 export function IdeaForm() {
+  const ready = useFormspreeReady();
+  if (!ready) return <FormUnavailable />;
+
   return (
     <form
       action={formspreeAction()}

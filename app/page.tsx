@@ -5,13 +5,13 @@ import { SeriesGrid } from "@/components/home/series-grid";
 import { StatsStrip } from "@/components/home/stats-strip";
 import { TopVideosShowcase } from "@/components/home/top-videos-showcase";
 import { getInstagramVideos } from "@/lib/instagram-videos";
-import { getSocialStats } from "@/lib/social-stats";
+import { getSocialStatsSafe } from "@/lib/social-stats";
 
 export const revalidate = 3600;
 
 export default async function HomePage() {
   const [stats, instagramVideos] = await Promise.all([
-    getSocialStats(),
+    getSocialStatsSafe(),
     getInstagramVideos(),
   ]);
 

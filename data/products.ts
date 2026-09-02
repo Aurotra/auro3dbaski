@@ -1,48 +1,54 @@
 export const shopierStoreUrl = "https://www.shopier.com/auro3dbaski";
 
-export type ShopierProduct = {
+export type Product = {
   id: string;
   title: string;
   price: string;
   imageUrl: string;
-  url: string;
+  shopierUrl: string;
+  material?: string;
+  shipping?: string;
 };
 
 /**
- * Shopier canlı çekimi başarısız olursa kullanılan son doğrulanmış vitrin.
- * Uydurma ürün yok — yalnızca mağazada listelenmiş kartlar.
+ * Mağaza vitrininin tek kaynağı. Canlı Shopier çekimi yok —
+ * ürün, fiyat ve görsel bu listeden statik gelir.
  */
-export const fallbackProducts: ShopierProduct[] = [
+export const products: Product[] = [
   {
     id: "41163104",
     title: "Ankara Kızılay Tabelası",
     price: "199,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_624d0c35d822ecea1f17d66aa34325b9.png",
-    url: "https://www.shopier.com/auro3dbaski/41163104",
+    imageUrl: "/images/shop/41163104.webp",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/41163104",
+    material: "PETG",
+    shipping: "1–3 iş günü",
   },
   {
     id: "50347929",
     title: "GTA VI - 3D Dekorasyon Disk",
     price: "299,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_cd60f76c0aebabdaf745f0b6d5a84148.jpeg",
-    url: "https://www.shopier.com/auro3dbaski/50347929",
+    imageUrl: "/images/shop/50347929.webp",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/50347929",
+    material: "PLA+",
+    shipping: "1–3 iş günü",
   },
   {
     id: "49717093",
     title: "Sardalya Takı Kutusu | Metalik",
     price: "459,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_fbe0e3b82618d541d2bdcf1709ac4285.png",
-    url: "https://www.shopier.com/auro3dbaski/49717093",
+    imageUrl: "/images/shop/49717093.webp",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49717093",
+    material: "PLA+",
+    shipping: "1–3 iş günü",
   },
   {
     id: "49717068",
     title: "Sardalya Takı Kutusu | Mor",
     price: "459,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_d1573df1f67ace35b63516b03bc83ac2.png",
-    url: "https://www.shopier.com/auro3dbaski/49717068",
+    imageUrl: "/images/shop/49717068.webp",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49717068",
+    material: "PLA+",
+    shipping: "1–3 iş günü",
   },
 ];

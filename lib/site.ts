@@ -15,9 +15,9 @@ export const site = {
   locale: "tr_TR",
   email: "auro3dbaski@gmail.com",
   location: "Eskişehir / Türkiye",
-  tagline: "Katman Katman Mühendislik, Sınır Tanımayan Üretim.",
+  tagline: "Atölyeden, katman katman.",
   subtitle:
-    "3D baskı dünyasındaki teknik detayları, pratik çözümleri ve üretim süreçlerini keşfedin. Tasarımdan nihai parçaya uzanan yolculuğu birlikte şekillendiriyoruz.",
+    "Teknik detayı ve pratik çözümü yazıcının başından anlatıyoruz. Tasarımdan çıkan parçaya kadar, atölyede olanı paylaşıyoruz.",
   description:
     "Auro 3D Baskı; masaüstü eklemeli imalat, malzeme bilimi ve tasarım ipuçlarını atölye deneyimiyle sunan bir dijital içerik ve inovasyon kanalıdır.",
   instagram: envUrl(
@@ -43,7 +43,13 @@ export const nav = [
 
 export function formspreeAction(): string {
   const id = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
-  return id ? `https://formspree.io/f/${id}` : "https://formspree.io/f/xxxxxxxx";
+  if (!id) {
+    console.warn(
+      `[Auro3DBaskı] NEXT_PUBLIC_FORMSPREE_ID eksik. Formlar gönderilmiyor. Doğrudan ${site.email} adresine yazın.`,
+    );
+    return "";
+  }
+  return `https://formspree.io/f/${id}`;
 }
 
 export function hasFormspree(): boolean {

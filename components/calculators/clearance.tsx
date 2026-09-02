@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { NumberField, parseLocaleNumber } from "@/components/calculators/number-field";
 import { MeasureLabel } from "@/components/ui/measure-label";
 
 const fits = {
@@ -18,7 +19,7 @@ const materialBias = {
 } as const;
 
 export function ClearanceCalc() {
-  const [nominal, setNominal] = useState(10);
+  const [nominal, setNominal] = useState("10");
   const [fit, setFit] = useState<keyof typeof fits>("normal");
   const [material, setMaterial] = useState<keyof typeof materialBias>("PLA");
 
@@ -27,23 +28,20 @@ export function ClearanceCalc() {
     [fit, material],
   );
 
-  const hole = nominal + clearance;
-  const shaft = nominal - clearance;
+  const size = parseLocaleNumber(nominal);
+  const base = Number.isFinite(size) ? size : 0;
+  const hole = base + clearance;
+  const shaft = base - clearance;
 
   return (
     <div className="rounded-md border border-white/10 bg-ink-soft p-5">
       <h2 className="font-display text-2xl text-text">Geçme toleransı</h2>
       <div className="mt-4 grid gap-3">
-        <label className="grid gap-1 text-sm text-muted">
-          Nominal ölçü (mm)
-          <input
-            type="number"
-            step={0.01}
-            value={nominal}
-            onChange={(e) => setNominal(Number(e.target.value))}
-            className="rounded-md border border-white/15 bg-ink px-3 py-2 font-mono text-text"
-          />
-        </label>
+        <NumberField
+          label="Nominal ölçü (mm)"
+          value={nominal}
+          onChange={setNominal}
+        />
         <label className="grid gap-1 text-sm text-muted">
           Geçme tipi
           <select

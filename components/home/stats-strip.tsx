@@ -67,7 +67,9 @@ function StatCell({
 export function StatsStrip({ totalFollowers }: { totalFollowers: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [run, setRun] = useState(false);
-  const [followers, setFollowers] = useState(totalFollowers);
+  const [followers, setFollowers] = useState(() =>
+    Math.max(7000, Number.isFinite(totalFollowers) ? totalFollowers : 0),
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -80,7 +82,7 @@ export function StatsStrip({ totalFollowers }: { totalFollowers: number }) {
           typeof data.totalFollowers === "number" &&
           Number.isFinite(data.totalFollowers)
         ) {
-          setFollowers(data.totalFollowers);
+          setFollowers(Math.max(7000, data.totalFollowers));
         }
       })
       .catch(() => {

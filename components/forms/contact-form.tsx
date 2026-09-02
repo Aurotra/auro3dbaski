@@ -1,12 +1,16 @@
 "use client";
 
 import { formspreeAction } from "@/lib/site";
+import { FormUnavailable, useFormspreeReady } from "@/components/forms/form-unavailable";
 
 export function ContactForm({
   subjects,
 }: {
   subjects: { value: string; label: string }[];
 }) {
+  const ready = useFormspreeReady();
+  if (!ready) return <FormUnavailable />;
+
   return (
     <form
       action={formspreeAction()}

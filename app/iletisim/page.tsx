@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/forms/contact-form";
 import { shopierStoreUrl } from "@/data/products";
 import { pageMeta } from "@/lib/seo";
-import { hasFormspree, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export const metadata = pageMeta({
   title: "İletişim",
@@ -37,15 +37,6 @@ export default function Page() {
         </Link>
         .
       </p>
-      {!hasFormspree() ? (
-        <p className="mt-3 text-sm text-muted">
-          Form henüz Formspree kimliğiyle bağlanmadı. Şimdilik doğrudan{" "}
-          <a href={`mailto:${site.email}`} className="text-accent-2">
-            {site.email}
-          </a>{" "}
-          adresine yazın.
-        </p>
-      ) : null}
       <div className="mt-8 grid gap-10 lg:grid-cols-2">
         <ContactForm
           subjects={[

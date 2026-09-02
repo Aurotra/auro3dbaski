@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/layout/footer";
 import { SiteHeader } from "@/components/layout/header";
+import { ogImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -25,18 +26,35 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const defaultTitle = `${site.name} — ${site.tagline}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: defaultTitle,
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  applicationName: site.name,
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
+    title: defaultTitle,
+    description: site.description,
+    url: site.url,
     siteName: site.name,
     locale: site.locale,
     type: "website",
-    images: [{ url: "/og-default.svg" }],
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: site.description,
+    images: [ogImage.url],
   },
 };
 
