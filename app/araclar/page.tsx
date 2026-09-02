@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { tools } from "@/data/content";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Araçlar",
-  description: "Tül Atölyesi, şehir haritası, çanta stüdyo ve hesaplayıcılar.",
+  description: "Filament maliyet ve geçme toleransı hesaplayıcıları.",
   path: "/araclar",
 });
 
@@ -15,18 +14,6 @@ export default function AraclarPage() {
         Araçlar
       </h1>
       <ul className="mt-8 grid gap-4 md:grid-cols-2">
-        {tools.map((t) => (
-          <li key={t.slug}>
-            <Link
-              href={t.href}
-              className="block rounded-md border border-white/10 bg-ink-soft p-5"
-            >
-              <p className="font-mono text-xs uppercase text-accent">Yakında</p>
-              <h2 className="mt-2 font-display text-2xl text-text">{t.title}</h2>
-              <p className="mt-2 text-sm text-muted">{t.summary}</p>
-            </Link>
-          </li>
-        ))}
         <li>
           <Link
             href="/araclar/hesaplayicilar"

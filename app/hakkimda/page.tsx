@@ -76,8 +76,8 @@ export default function HakkimdaPage() {
         Atölye ve ekipman
       </h2>
       <p className="mt-2 text-sm text-muted">
-        Beş yazıcı: iki P1S, bir P1P, bir A1 ve bir SLA reçine. AMS ile renk ve
-        destek ayrımı.
+        Atölyemizde bulunan markalar: Flashforge, Bambu Lab, Elegoo. 8+ FDM /
+        SLA yazıcı.
       </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {equipment.map((e) => (

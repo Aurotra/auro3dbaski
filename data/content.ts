@@ -18,29 +18,7 @@ export type ToolCard = {
   status: "yakinda" | "hazir";
 };
 
-export const tools: ToolCard[] = [
-  {
-    slug: "tul-atolyesi",
-    href: "/araclar/tul-atolyesi",
-    title: "Tül Atölyesi",
-    summary: "Deseni ekranda kur, baskıya hazır dosyayı al.",
-    status: "yakinda",
-  },
-  {
-    slug: "sehir-haritasi",
-    href: "/araclar/sehir-haritasi",
-    title: "Şehir Haritası Konfigüratörü",
-    summary: "Katmanlı şehir panosunu ölçüyle ayarla.",
-    status: "yakinda",
-  },
-  {
-    slug: "canta-studyo",
-    href: "/araclar/canta-studyo",
-    title: "Çanta Stüdyo",
-    summary: "Form, kulp ve ölçü seç, çıktıyı bas.",
-    status: "yakinda",
-  },
-];
+export const tools: ToolCard[] = [];
 
 export type ProductionMaterial = {
   id: string;
@@ -135,7 +113,7 @@ export const collabFormats = [
   },
   {
     title: "Atölye ekipman testleri",
-    body: "Kurutucu, AMS, nozul ve kalibrasyon donanımı üretim hattında denenir.",
+    body: "Kurutucu, nozul ve kalibrasyon donanımı üretim hattında denenir.",
   },
 ] as const;
 

@@ -97,7 +97,7 @@ export const glossary: GlossaryTerm[] = [
     what: "ABS/ASA ve geniş PETG parçalarda köşe yükselir, mil kayar, üst katmanlar kayar. Nedeni termal büzülme ve zayıf ilk kat.",
     when: "Geniş taban, keskin köşe, açık yazıcı, soğuk oda, nemli filament.",
     bambuSetting: "Kapalı kabin, brim, yüksek yatak ısısı, ilk kat yavaş. Filament / Bed temp ve Quality / Brim.",
-    caveats: "Sadece yapıştırıcı yetmez. P1S’te kapı kapalı, taslak yok, ilk kat ezmesi doğru olmalı. Naylon ayrı kurutulur.",
+    caveats: "Sadece yapıştırıcı yetmez. Kapalı kabinli yazıcıda kapı kapalı, taslak yok, ilk kat ezmesi doğru olmalı. Naylon ayrı kurutulur.",
   },
   {
     slug: "bed-adhesion",

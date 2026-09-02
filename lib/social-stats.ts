@@ -20,7 +20,7 @@ function envInt(name: string, fallback: number): number {
 function fallbacks(): SocialStats {
   const youtube = envInt("STATS_FALLBACK_YOUTUBE", 272);
   const tiktok = envInt("STATS_FALLBACK_TIKTOK", 936);
-  const instagram = envInt("STATS_FALLBACK_INSTAGRAM", 0);
+  const instagram = envInt("STATS_FALLBACK_INSTAGRAM", 4727);
   return {
     youtube,
     tiktok,

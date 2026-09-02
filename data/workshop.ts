@@ -13,7 +13,7 @@ export const stats: Stat[] = [
     value: 1_200,
     suffix: "+",
   },
-  { id: "printers", label: "Aktif yazıcı", value: 5, suffix: "" },
+  { id: "printers", label: "Aktif yazıcı", value: 8, suffix: "+" },
 ];
 
 export type Equipment = {
@@ -24,29 +24,19 @@ export type Equipment = {
 
 export const equipment: Equipment[] = [
   {
-    id: "p1s",
-    name: "2× Bambu Lab P1S",
-    use: "Kapalı kabin, PETG ve mühendislik filamentleriyle fonksiyonel parça.",
+    id: "flashforge",
+    name: "Flashforge",
+    use: "Atölyedeki FDM parkurunda.",
   },
   {
-    id: "p1p",
-    name: "1× Bambu Lab P1P",
-    use: "Hızlı PLA prototip ve seri tekrar.",
+    id: "bambu",
+    name: "Bambu Lab",
+    use: "Atölyedeki FDM parkurunda.",
   },
   {
-    id: "a1",
-    name: "1× Bambu Lab A1",
-    use: "Açık yatak, eğitim ve kısa döngülü denemeler.",
-  },
-  {
-    id: "sla",
-    name: "1× SLA reçine yazıcı",
-    use: "İnce detay, kalıp ve pürüzsüz yüzey.",
-  },
-  {
-    id: "ams",
-    name: "AMS çoklu renk sistemi",
-    use: "Renk geçişi ve destek malzemesi ayrımı.",
+    id: "elegoo",
+    name: "Elegoo",
+    use: "FDM ve SLA reçine üretiminde.",
   },
 ];
 

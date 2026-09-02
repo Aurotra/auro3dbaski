@@ -106,7 +106,7 @@ export function StatsStrip({ totalFollowers }: { totalFollowers: number }) {
 
   const views = staticStats.find((s) => s.id === "views")?.value ?? 3_000_000;
   const parts = staticStats.find((s) => s.id === "parts")?.value ?? 1_200;
-  const printers = staticStats.find((s) => s.id === "printers")?.value ?? 5;
+  const printers = staticStats.find((s) => s.id === "printers")?.value ?? 8;
 
   return (
     <section ref={ref} className="border-y border-white/10 bg-ink-soft px-4 py-12">
@@ -124,7 +124,7 @@ export function StatsStrip({ totalFollowers }: { totalFollowers: number }) {
           format="grouped"
           run={run}
         />
-        <StatCell label="Aktif yazıcı" value={printers} format="plain" run={run} />
+        <StatCell label="Aktif yazıcı" value={printers} format="grouped" run={run} />
       </div>
     </section>
   );
