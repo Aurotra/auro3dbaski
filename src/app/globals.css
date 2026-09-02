@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+
+  --color-chamber: #070b14;
+  --color-bed: #0c1424;
+  --color-plate: #121c30;
+  --color-bone: #f4efe6;
+  --color-kraft: #e7dcc8;
+  --color-ink: #10141c;
+  --color-mist: #c9d4e0;
+  --color-muted: #8b9bb0;
+  --color-magenta: #d14bff;
+  --color-cyan: #3af0e8;
+  --color-lime: #b6ff4a;
+  --color-line: color-mix(in srgb, #3af0e8 16%, #121c30);
+
+  --shadow-nozzle: 0 0 24px color-mix(in srgb, var(--color-cyan) 35%, transparent);
+}
+
+@layer base {
+  html {
+    background: var(--color-chamber);
+    color: var(--color-bone);
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--color-magenta) 18%, transparent), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, color-mix(in srgb, var(--color-cyan) 12%, transparent), transparent 55%),
+      var(--color-chamber);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-lime) 55%, transparent);
+    color: var(--color-chamber);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+}
+
+@utility bed-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-cyan) 22%, transparent) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+@utility filament-bar {
+  background: linear-gradient(
+    90deg,
+    #8b2dff 0%,
+    var(--color-magenta) 28%,
+    var(--color-cyan) 68%,
+    var(--color-lime) 100%
+  );
+}
+
+@layer components {
+  .layer-print {
+    display: grid;
+    isolation: isolate;
+  }
+
+  .layer-print > span {
+    grid-area: 1 / 1;
+    overflow: hidden;
+    line-height: 0.88;
+    clip-path: inset(calc(var(--i) * 12.5%) 0 calc((7 - var(--i)) * 12.5%) 0);
+    animation: extrude 0.7s calc(var(--i) * 90ms) cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .nozzle-line {
+    animation: nozzle-travel 1.05s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes extrude {
+  from {
+    transform: translateX(-18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes nozzle-travel {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}

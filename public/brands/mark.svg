@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 72" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="filament" x1="8" y1="64" x2="56" y2="8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B2DFF" />
+      <stop offset="0.35" stop-color="#D14BFF" />
+      <stop offset="0.68" stop-color="#3AF0E8" />
+      <stop offset="1" stop-color="#B6FF4A" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M32 14 12 64h9.2l3.4-9.2h15l3.4 9.2H52L32 14Zm0 16.4 5.1 13.8H26.9L32 30.4Z"
+    fill="url(#filament)"
+  />
+  <path d="M29.2 6.2h5.6v6.2h-5.6z" fill="url(#filament)" />
+  <path d="M27.2 4.2h9.6l1.6 2H25.6l1.6-2Z" fill="#F4EFE6" />
+  <path d="M32 2.2 33.6 5h-3.2L32 2.2Z" fill="#F4EFE6" />
+</svg>
