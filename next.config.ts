@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      { source: "/map", destination: "https://auro3dmap.vercel.app" },
+      {
+        source: "/map/:path*",
+        destination: "https://auro3dmap.vercel.app/:path*",
+      },
+    ];
+  },
   async redirects() {
     return [
       {
