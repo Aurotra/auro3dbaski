@@ -51,7 +51,7 @@ export default function Page() {
         <QuoteForm />
         <div>
           <h2 className="border-l-4 border-accent pl-4 font-display text-2xl text-text">
-            SSS
+            Teknik üretim SSS
           </h2>
           <div className="mt-4">
             <FaqAccordion items={[...productionFaq]} />

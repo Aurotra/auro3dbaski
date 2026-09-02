@@ -4,7 +4,7 @@ export type TeamMember = {
   role: string;
   photoUrl: string;
   photoAlt: string;
-  body: string;
+  body: string[];
   tags?: string[];
 };
 
@@ -12,36 +12,44 @@ export const team: TeamMember[] = [
   {
     id: "sude",
     name: "Sude",
-    role: "Kurucu · Tasarım & Üretim · İçerik",
+    role: "Mekanik tasarım · CAD · DfAM",
     photoUrl: "/images/sude.svg",
-    photoAlt: "TODO: Sude atölye fotoğrafı",
-    body: "Eskişehir'de makine mühendisliği öğrencisi. Tasarımdan dilimlemeye, baskıdan kurguya kadar üretim ve içerik tarafının tamamını kendisi yürütüyor. Kamera önündeki yüz.", // TODO: nihai metin
-    tags: ["SolidWorks", "Fusion 360", "Bambu Studio", "CapCut"],
+    photoAlt: "Sude — mekanik tasarım ve üretim",
+    body: [
+      "Makine mühendisliği formasyonuyla projelerin mekanik tasarım, CAD modelleme ve simülasyon aşamalarını yürütüyor.",
+      "Eklemeli imalat için tasarım (DfAM) prensiplerini içeriklere entegre ediyor.",
+      "Üretim süreçlerinde estetik ve işlevselliğin dengesini kurarak kanalın yaratıcı projelerinin hayata geçirilmesinde aktif rol alıyor.",
+    ],
+    tags: ["CAD", "DfAM", "Simülasyon"],
   },
   {
     id: "berk",
-    name: "Berk",
-    role: "Operasyon & İş Geliştirme",
+    name: "Berk Tepe",
+    role: "Ar-Ge · eklemeli imalat · içerik stratejisi",
     photoUrl: "/images/berk.svg",
-    photoAlt: "Berk — operasyon",
-    body: "Üretim operasyonu, sipariş akışı ve işbirlikleri tarafında birlikte çalışıyor. Kamera arkasında kalan tarafın büyük kısmı burada yürüyor.", // TODO: nihai metin
+    photoAlt: "Berk Tepe — Ar-Ge ve eklemeli imalat",
+    body: [
+      "Otomotiv mühendisliği altyapısına sahip olan Berk Tepe; kompozit teknolojileri, eklemeli imalat ve tersine mühendislik alanlarında edindiği Ar-Ge tecrübesini Auro 3D Baskı platformuna aktarıyor.",
+      "Farklı FDM ve SLA yazıcıların kalibrasyonu üzerine içerik stratejilerini yönetiyor.",
+      "Endüstriyel filamentlerin dayanım testleri ve donanım iyileştirmeleri de aynı stratejinin parçası.",
+    ],
   },
 ];
 
 export const intro = {
   heading: "Atölyenin içinden.",
   body: [
-    "TODO: 3-4 cümlelik tanıtım. Mühendislik öğrencisi kimliği ve kimin için içerik üretildiği.",
-    "TODO: ikinci cümle.",
-    "TODO: üçüncü cümle.",
+    "Auro 3D Baskı; masaüstü eklemeli imalat teknolojilerini, malzeme bilimini ve tasarım ipuçlarını doğrudan atölye deneyimiyle sunan bir dijital içerik ve inovasyon kanalıdır.",
+    "FDM ve reçine baskı süreçlerindeki dilimleme püf noktalarından endüstriyel termoplastiklerin sınırlarına kadar merak edilen tüm detayları şeffaf bir dille paylaşıyoruz.",
+    "Milyonlara ulaşan video içeriklerimizle hem yeni başlayanlara rehberlik ediyor hem de profesyonellere yönelik optimize üretim taktikleri sunuyoruz.",
   ],
 };
 
 export const story = {
   heading: "Marka hikâyesi",
   paragraphs: [
-    "TODO: nasıl başladı.",
-    "TODO: neden 3D baskı.",
-    "TODO: mühendislik eğitiminin içeriğe nasıl yansıdığı.",
+    "Auro 3D Baskı, katmanlı imalat teknolojilerini teorik mühendislik temelleri ve pratik atölye uygulamalarıyla harmanlayarak dijital platformlarda paylaşmak amacıyla kuruldu.",
+    "Atölyemizde sadece parçaları yazdırmıyor; baskı yöneliminin mekanik mukavemete etkisini, doğru malzeme seçimini ve tasarım optimizasyonunu analiz ederek takipçilerimize katma değerli içerikler üretiyoruz.",
+    "Masaüstü eklemeli imalat, malzeme bilimi ve tasarım ipuçlarını doğrudan atölye deneyimiyle sunuyoruz — yeni başlayanlara rehber, profesyonellere optimize üretim taktiği.",
   ],
 };

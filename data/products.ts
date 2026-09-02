@@ -1,95 +1,48 @@
-export type ProductCategory =
-  | "taki-kutulari"
-  | "ev-dekoru"
-  | "kisisellestirilmis-hediyeler";
+export const shopierStoreUrl = "https://www.shopier.com/auro3dbaski";
 
-export type ProductPlatform = "shopier" | "trendyol" | "etsy";
-
-export type Product = {
+export type ShopierProduct = {
   id: string;
-  name: string;
-  slug: string;
-  category: ProductCategory;
-  summary: string;
-  priceRange: string;
-  images: string[];
-  platforms: Partial<Record<ProductPlatform, string>>;
-  variants: string[];
-  leadTime: string;
-  shippingNote: string;
-  material: string;
-  featured?: boolean;
+  title: string;
+  price: string;
+  imageUrl: string;
+  url: string;
 };
 
-export const productCategories: { id: ProductCategory | "all"; label: string }[] =
-  [
-    { id: "all", label: "Tümü" },
-    { id: "taki-kutulari", label: "Takı Kutuları" },
-    { id: "ev-dekoru", label: "Ev Dekoru" },
-    { id: "kisisellestirilmis-hediyeler", label: "Kişiselleştirilmiş Hediyeler" },
-  ];
-
-export const products: Product[] = [
+/**
+ * Shopier canlı çekimi başarısız olursa kullanılan son doğrulanmış vitrin.
+ * Uydurma ürün yok — yalnızca mağazada listelenmiş kartlar.
+ */
+export const fallbackProducts: ShopierProduct[] = [
   {
-    id: "p1",
-    name: "Sardalya Takı Kutusu",
-    slug: "sardalya-taki-kutusu",
-    category: "taki-kutulari",
-    summary: "Kapaklı, bölmeli takı kutusu. // TODO: açıklama",
-    priceRange: "TODO ₺",
-    images: ["/posters/urun-sardalya.svg"],
-    platforms: {
-      // TODO: Shopier / Trendyol / Etsy linkleri
-    },
-    variants: ["TODO: renk"],
-    leadTime: "TODO: üretim süresi",
-    shippingNote: "TODO: kargo notu",
-    material: "TODO: malzeme",
-    featured: true,
+    id: "41163104",
+    title: "Ankara Kızılay Tabelası",
+    price: "199,00 TL",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_624d0c35d822ecea1f17d66aa34325b9.png",
+    url: "https://www.shopier.com/auro3dbaski/41163104",
   },
   {
-    id: "p2",
-    name: "Mini Manyetik Vazo",
-    slug: "mini-manyetik-vazo",
-    category: "ev-dekoru",
-    summary: "Metal yüzeye tutunan küçük vazo. // TODO: açıklama",
-    priceRange: "TODO ₺",
-    images: ["/posters/urun-vazo.svg"],
-    platforms: {},
-    variants: ["TODO: renk"],
-    leadTime: "TODO: üretim süresi",
-    shippingNote: "TODO: kargo notu",
-    material: "TODO: malzeme",
-    featured: true,
+    id: "50347929",
+    title: "GTA VI - 3D Dekorasyon Disk",
+    price: "299,00 TL",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_cd60f76c0aebabdaf745f0b6d5a84148.jpeg",
+    url: "https://www.shopier.com/auro3dbaski/50347929",
   },
   {
-    id: "p3",
-    name: "Şehir Haritası Duvar Panosu",
-    slug: "sehir-haritasi-duvar-panosu",
-    category: "ev-dekoru",
-    summary: "Katmanlı şehir silueti. // TODO: açıklama",
-    priceRange: "TODO ₺",
-    images: ["/posters/urun-harita.svg"],
-    platforms: {},
-    variants: ["TODO: şehir"],
-    leadTime: "TODO: üretim süresi",
-    shippingNote: "TODO: kargo notu",
-    material: "TODO: malzeme",
-    featured: true,
+    id: "49717093",
+    title: "Sardalya Takı Kutusu | Metalik",
+    price: "459,00 TL",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_fbe0e3b82618d541d2bdcf1709ac4285.png",
+    url: "https://www.shopier.com/auro3dbaski/49717093",
   },
   {
-    id: "p4",
-    name: "Kişiselleştirilmiş Hafıza Kartı",
-    slug: "kisisellestirilmis-hafiza-karti",
-    category: "kisisellestirilmis-hediyeler",
-    summary: "İsim / tarih kabartmalı kart. // TODO: açıklama",
-    priceRange: "TODO ₺",
-    images: ["/posters/urun-kart.svg"],
-    platforms: {},
-    variants: ["TODO: metin"],
-    leadTime: "TODO: üretim süresi",
-    shippingNote: "TODO: kargo notu",
-    material: "TODO: malzeme",
-    featured: true,
+    id: "49717068",
+    title: "Sardalya Takı Kutusu | Mor",
+    price: "459,00 TL",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_d1573df1f67ace35b63516b03bc83ac2.png",
+    url: "https://www.shopier.com/auro3dbaski/49717068",
   },
 ];

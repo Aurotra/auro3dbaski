@@ -46,7 +46,8 @@ export default function RootLayout({
   const org = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: site.name,
+    name: site.channelName,
+    alternateName: site.name,
     url: site.url,
     email: site.email,
     sameAs: [site.instagram, site.tiktok, site.youtube],

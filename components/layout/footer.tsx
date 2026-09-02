@@ -7,7 +7,6 @@ const footerNav = [
   { href: "/magaza", label: "Mağaza" },
   { href: "/araclar", label: "Araçlar" },
   { href: "/bilgi-bankasi", label: "Bilgi Bankası" },
-  { href: "/gunluk", label: "Günlük" },
   { href: "/ozel-uretim", label: "Özel Üretim" },
   { href: "/isbirlikleri", label: "İşbirlikleri" },
   { href: "/hakkimda", label: "Hakkımızda" },
@@ -20,9 +19,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
         <div>
           <BrandLogo size="md" />
-          <p className="mt-3 max-w-xs text-sm text-muted">
-            Atölyenin içinden. Ölçerek, basarak, göstererek.
-          </p>
+          <p className="mt-3 max-w-xs text-sm text-muted">{site.subtitle}</p>
         </div>
         <nav className="grid grid-cols-2 gap-2" aria-label="Site haritası">
           {footerNav.map((item) => (

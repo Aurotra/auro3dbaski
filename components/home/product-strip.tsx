@@ -1,41 +1,36 @@
-import Image from "next/image";
+import { ProductCard } from "@/components/shop/product-card";
 import { Button } from "@/components/ui/button";
-import { MeasureLabel } from "@/components/ui/measure-label";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { products } from "@/data/products";
+import { shopierStoreUrl, type ShopierProduct } from "@/data/products";
 
-export function ProductStrip() {
-  const featured = products.filter((p) => p.featured).slice(0, 4);
+export function ProductStrip({
+  products,
+  source,
+}: {
+  products: ShopierProduct[];
+  source: "live" | "fallback";
+}) {
   return (
     <section className="bg-ink px-4 py-16">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Mağaza">Atölyeden çıkanlar</SectionHeading>
+        {source === "fallback" ? (
+          <p className="mt-3 max-w-2xl text-sm text-muted">
+            Canlı vitrin şu an Shopier’den çekilemedi. Aşağıdaki kartlar mağazadan
+            doğrulanmış son listedir; güncel stok ve fiyat için Shopier’e gidin.
+          </p>
+        ) : null}
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((item) => (
-            <li
-              key={item.id}
-              className="overflow-hidden rounded-md border border-white/10 bg-ink-soft"
-            >
-              <div className="relative aspect-square">
-                <Image
-                  src={item.images[0]}
-                  alt={item.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 25vw"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-display text-lg text-text">{item.name}</h3>
-                <p className="mt-1 text-sm text-muted">{item.summary}</p>
-                <MeasureLabel className="mt-3">{item.priceRange}</MeasureLabel>
-              </div>
-            </li>
+          {products.map((item) => (
+            <ProductCard key={item.id} product={item} />
           ))}
         </ul>
-        <Button href="/magaza" className="mt-8">
-          Tüm Ürünler
-        </Button>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button href="/magaza">Tüm Ürünler</Button>
+          <Button href={shopierStoreUrl} variant="outline">
+            Shopier mağazası
+          </Button>
+        </div>
       </div>
     </section>
   );

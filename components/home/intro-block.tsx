@@ -9,7 +9,7 @@ export function IntroBlock() {
         <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-ink/10 bg-ink-soft">
           <Image
             src="/images/sude.svg"
-            alt="TODO: Sude atölye fotoğrafı"
+            alt="Sude — atölye"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"

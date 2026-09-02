@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MeasureLabel } from "@/components/ui/measure-label";
-import { collabFormats, mediaKit, partners } from "@/data/content";
+import { collabFormats, mediaKit } from "@/data/content";
 import { pageMeta } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = pageMeta({
   title: "İşbirlikleri",
-  description: "Marka ortaklıkları ve medya kiti.",
+  description: `${mediaKit.channel} marka ortaklıkları — ${mediaKit.audience}`,
   path: "/isbirlikleri",
 });
 
@@ -16,36 +17,32 @@ export default function Page() {
       <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
         İşbirlikleri
       </h1>
-      <div className="mt-10 flex flex-wrap items-center gap-6">
-        {partners.map((p) => (
-          <div
-            key={p.id}
-            className="flex h-16 w-36 items-center justify-center rounded-md border border-white/10 bg-ink-soft font-mono text-xs text-muted"
-          >
-            {p.name}
-          </div>
-        ))}
-      </div>
-      <p className="mt-2 text-sm text-muted">TODO: logolar</p>
+      <p className="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent">
+        {mediaKit.channel}
+      </p>
+      <p className="mt-4 max-w-3xl text-muted">{mediaKit.audience}</p>
       <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <p className="text-sm text-muted">Takipçi</p>
-          <MeasureLabel className="mt-2">{mediaKit.followers}</MeasureLabel>
+          <p className="text-sm text-muted">Topluluk</p>
+          <p className="mt-2 font-mono text-2xl text-accent-2">{mediaKit.followers}</p>
+        </Card>
+        <Card>
+          <p className="text-sm text-muted">Toplam izlenme</p>
+          <p className="mt-2 font-mono text-lg text-accent-2">{mediaKit.reach}</p>
         </Card>
         <Card>
           <p className="text-sm text-muted">Ort. izlenme</p>
-          <MeasureLabel className="mt-2">{mediaKit.avgViews}</MeasureLabel>
+          <p className="mt-2 text-sm text-text">{mediaKit.avgViews}</p>
         </Card>
         <Card>
-          <p className="text-sm text-muted">Kitle</p>
+          <p className="text-sm text-muted">Demografi</p>
           <p className="mt-2 text-sm text-text">{mediaKit.demo}</p>
         </Card>
-        <Card>
-          <p className="text-sm text-muted">Geçmiş</p>
-          <p className="mt-2 text-sm text-text">{mediaKit.past}</p>
-        </Card>
       </div>
-      <ul className="mt-10 grid gap-3 md:grid-cols-2">
+      <h2 className="mt-14 border-l-4 border-accent pl-4 font-display text-2xl text-text">
+        İş birliği alanları
+      </h2>
+      <ul className="mt-6 grid gap-3 md:grid-cols-2">
         {collabFormats.map((f) => (
           <li key={f.title}>
             <Card>
@@ -55,18 +52,24 @@ export default function Page() {
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        disabled
-        className="mt-8 rounded-md bg-white/10 px-4 py-2.5 font-display text-sm text-muted"
-      >
-        Medya Kitini İndir
-      </button>
-      {/* TODO: PDF eklenecek */}
-      <p className="mt-6">
+      <div className="mt-10 flex flex-wrap gap-3">
+        <Button href="/iletisim">İletişime geç</Button>
+        <Button href={site.youtube} variant="outline">
+          YouTube
+        </Button>
+        <Button href={site.instagram} variant="outline">
+          Instagram
+        </Button>
+        <Button href={site.tiktok} variant="outline">
+          TikTok
+        </Button>
+      </div>
+      <p className="mt-6 text-sm text-muted">
+        Medya kiti PDF’si henüz yayınlanmadı. Brief için{" "}
         <Link href="/iletisim" className="text-accent-2">
-          İletişime geç
-        </Link>
+          iletişim formu
+        </Link>{" "}
+        veya {site.email}.
       </p>
     </div>
   );

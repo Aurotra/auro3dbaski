@@ -1,23 +1,24 @@
 import { ClosingCta } from "@/components/home/closing-cta";
 import { Hero } from "@/components/home/hero";
 import { IntroBlock } from "@/components/home/intro-block";
-import { ProductStrip } from "@/components/home/product-strip";
-import { ProofCompare } from "@/components/home/proof-compare";
 import { SeriesGrid } from "@/components/home/series-grid";
 import { StatsStrip } from "@/components/home/stats-strip";
 import { ToolsStrip } from "@/components/home/tools-strip";
 import { TopVideosShowcase } from "@/components/home/top-videos-showcase";
+import { getSocialStats } from "@/lib/social-stats";
 
-export default function HomePage() {
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const stats = await getSocialStats();
+
   return (
     <>
       <Hero />
       <TopVideosShowcase />
       <IntroBlock />
-      <StatsStrip />
+      <StatsStrip totalFollowers={stats.totalFollowers} />
       <SeriesGrid />
-      <ProofCompare />
-      <ProductStrip />
       <ToolsStrip />
       <ClosingCta />
     </>

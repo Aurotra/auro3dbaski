@@ -7,32 +7,8 @@ export type ProofPair = {
   afterLabel: string;
 };
 
-export const proofPairs: ProofPair[] = [
-  {
-    id: "pr1",
-    title: "Yanlış ayar / doğru ayar",
-    beforeUrl: "/posters/before-1.svg",
-    afterUrl: "/posters/after-1.svg",
-    beforeLabel: "Yanlış profil",
-    afterLabel: "Doğru profil",
-  },
-  {
-    id: "pr2",
-    title: "TODO: ikinci örnek",
-    beforeUrl: "/posters/before-2.svg",
-    afterUrl: "/posters/after-2.svg",
-    beforeLabel: "Önce",
-    afterLabel: "Sonra",
-  },
-  {
-    id: "pr3",
-    title: "TODO: üçüncü örnek",
-    beforeUrl: "/posters/before-3.svg",
-    afterUrl: "/posters/after-3.svg",
-    beforeLabel: "Önce",
-    afterLabel: "Sonra",
-  },
-];
+/** Kanıt karşılaştırmaları henüz yok — ana sayfa bölümü beklemeye alındı. */
+export const proofPairs: ProofPair[] = [];
 
 export type ToolCard = {
   slug: string;
@@ -101,7 +77,11 @@ export const productionMaterials: ProductionMaterial[] = [
 ];
 
 export const productionSteps = [
-  { n: "01", title: "Dosya gönder", body: "STL / STEP veya ölçü. WeTransfer ya da Drive linki yeter." },
+  {
+    n: "01",
+    title: "Dosya gönder",
+    body: "STL, STEP, STP veya 3MF. WeTransfer ya da Drive linki yeter.",
+  },
   { n: "02", title: "Teklif", body: "Malzeme, adet ve süre netleşir." },
   { n: "03", title: "Onay", body: "Profil ve teslim tarihi kilitlenir." },
   { n: "04", title: "Üretim", body: "FDM veya SLA, ölçü kontrolüyle." },
@@ -114,30 +94,48 @@ export type FaqItem = {
 };
 
 export const productionFaq: FaqItem[] = [
-  { q: "Hangi dosya formatları kabul ediliyor?", a: "TODO: cevap" },
-  { q: "Minimum sipariş var mı?", a: "TODO: cevap" },
-  { q: "Teslim süresi ne kadar?", a: "TODO: cevap" },
-  { q: "Hangi malzemeler mevcut?", a: "TODO: cevap" },
-  { q: "Tolerans hassasiyeti ne?", a: "TODO: cevap" },
-  { q: "Kargo nasıl yapılıyor?", a: "TODO: cevap" },
+  {
+    q: "Hangi dosya formatlarında üretim yapabiliyorsunuz?",
+    a: "Üretim ve dilimleme süreçlerimizde doğrudan .STL, .STEP, .STP ve .3MF uzantılarını kabul ediyoruz. Mühendislik ve montaj gerektiren parçalar için geometrik doğruluğu koruyan STEP formatı öncelikli tercihimizdir.",
+  },
+  {
+    q: "Parçam için hangi malzemenin (PLA, PETG, ABS, PC vb.) uygun olduğunu nasıl belirliyorsunuz?",
+    a: "Parçanın çalışacağı ortam sıcaklığı, maruz kalacağı mekanik yük, UV dayanımı gereksinimi ve kimyasal temas durumuna göre mühendislik analizi yaparak en optimum malzemeyi belirliyoruz.",
+  },
+  {
+    q: "Sipariş ettiğim parçanın tolerans hassasiyeti nedir?",
+    a: "FDM üretimlerimizde geometriye ve kullanılan malzemeye bağlı olarak standart boyutsal toleransımız ±0,15 mm ile ±0,2 mm aralığındadır. Reçine (SLA) baskılarda bu değer mikron seviyelerine inmektedir.",
+  },
+  {
+    q: "Minimum ve maksimum üretim boyutlarınız nedir?",
+    a: "Tek parça baskıda yazıcı hacmimize göre 256 × 256 × 256 mm ölçülerine kadar blok baskı alabiliyoruz. Daha büyük modellerde ise modüler birleştirme (dovetail/pim) teknikleriyle metre boyutundaki prototipleri üretebiliyoruz.",
+  },
+  {
+    q: "Teslimat süresi ne kadardır?",
+    a: "Onaylanan siparişlerde prototipleme ve test modelleri genellikle 1–3 iş günü içerisinde üretilip kargoya teslim edilir. Seri veya yüksek hacimli parçalarda süre proje kapsamına göre önceden planlanır.",
+  },
+  {
+    q: "Gönderdiğim tasarımların gizliliği korunuyor mu?",
+    a: "Evet. Tarafımıza iletilen tüm CAD çizimleri, özel modeller ve Ar-Ge fikirleri tamamen gizli tutulur; talep edilmesi durumunda kurumsal işbirlikleri için Gizlilik Sözleşmesi (NDA) imzalanmaktadır.",
+  },
 ];
 
 export const collabFormats = [
   {
-    title: "Ürün incelemesi",
-    body: "Kamerada ölçülür, basılır, söylenen şey kanıtlanır.",
+    title: "3D yazıcı incelemeleri",
+    body: "Masaüstü ve atölye yazıcıları ölçülür, basılır, söylenen performans kamerada kanıtlanır.",
   },
   {
-    title: "Sponsorlu video",
-    body: "Seri içine oturan, öğretici format.",
+    title: "Filament / malzeme dayanım sponsorlukları",
+    body: "Termoplastik ve reçine iddiaları ısı, yük ve UV bağlamında test edilir.",
   },
   {
-    title: "Uzun vadeli elçilik",
-    body: "Yazıcı ve filament tarafında süreklilik.",
+    title: "Dilimleme / CAD yazılım tanıtımları",
+    body: "Profil, oryantasyon ve DfAM kararları gerçek parça üzerinde gösterilir.",
   },
   {
-    title: "Ortak ürün geliştirme",
-    body: "Atölyede birlikte tasarlanan parça.",
+    title: "Atölye ekipman testleri",
+    body: "Kurutucu, AMS, nozul ve kalibrasyon donanımı üretim hattında denenir.",
   },
 ] as const;
 
@@ -147,15 +145,15 @@ export type Partner = {
   logoUrl: string;
 };
 
-export const partners: Partner[] = [
-  { id: "pt1", name: "TODO: ortak 1", logoUrl: "/posters/partner.svg" },
-  { id: "pt2", name: "TODO: ortak 2", logoUrl: "/posters/partner.svg" },
-  { id: "pt3", name: "TODO: ortak 3", logoUrl: "/posters/partner.svg" },
-];
+export const partners: Partner[] = [];
 
 export const mediaKit = {
-  followers: "TODO",
-  avgViews: "TODO",
-  demo: "TODO: kitle demografisi",
-  past: "TODO: geçmiş işbirliği örnekleri",
+  channel: "Auro 3D Baskı",
+  audience:
+    "3D yazıcı kullanıcıları, makine / mekatronik / otomotiv mühendisleri, maker toplulukları, endüstriyel tasarımcılar ve teknoloji meraklıları.",
+  demo: "%82 erkek / %18 kadın; en yoğun yaş aralığı 18–34 (%68). Ağırlıklı kitle: Türkiye, Almanya, Azerbaycan.",
+  avgViews:
+    "Short / Reels başına 10.000–25.000 görüntülenme; öne çıkan rehber içeriklerde 500.000+ izlenme.",
+  followers: "7.000+",
+  reach: "3.000.000+ toplam izlenme",
 };

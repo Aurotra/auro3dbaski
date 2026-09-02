@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/contact-form";
+import { shopierStoreUrl } from "@/data/products";
 import { pageMeta } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { hasFormspree, site } from "@/lib/site";
 
 export const metadata = pageMeta({
   title: "İletişim",
@@ -21,10 +22,30 @@ export default function Page() {
         </a>
       </p>
       <p className="mt-3 text-sm text-muted">
-        Ürün siparişi: <Link href="/magaza" className="text-accent-2">/magaza</Link>
+        Ürün siparişi şimdilik{" "}
+        <a
+          href={shopierStoreUrl}
+          className="text-accent-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Shopier
+        </a>
         . Özel üretim:{" "}
-        <Link href="/ozel-uretim" className="text-accent-2">/ozel-uretim</Link>.
+        <Link href="/ozel-uretim" className="text-accent-2">
+          /ozel-uretim
+        </Link>
+        .
       </p>
+      {!hasFormspree() ? (
+        <p className="mt-3 text-sm text-muted">
+          Form henüz Formspree kimliğiyle bağlanmadı. Şimdilik doğrudan{" "}
+          <a href={`mailto:${site.email}`} className="text-accent-2">
+            {site.email}
+          </a>{" "}
+          adresine yazın.
+        </p>
+      ) : null}
       <div className="mt-8 grid gap-10 lg:grid-cols-2">
         <ContactForm
           subjects={[

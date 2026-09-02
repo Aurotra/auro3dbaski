@@ -13,19 +13,19 @@ export const metadata = pageMeta({
 });
 
 export default function HakkimdaPage() {
-  const person = {
+  const people = team.map((m) => ({
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Sude",
-    jobTitle: "Kurucu",
+    name: m.name,
+    jobTitle: m.role,
     worksFor: { "@type": "Organization", name: site.name },
-  };
+  }));
 
   return (
     <article className="mx-auto max-w-6xl px-4 py-14">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(people) }}
       />
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
@@ -39,7 +39,7 @@ export default function HakkimdaPage() {
           </div>
         </div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-white/10">
-          <Image src="/images/sude.svg" alt="TODO: Sude atölye fotoğrafı" fill className="object-cover" sizes="50vw" />
+          <Image src="/images/sude.svg" alt="Sude — atölye" fill className="object-cover" sizes="50vw" />
         </div>
       </div>
 
@@ -56,7 +56,11 @@ export default function HakkimdaPage() {
             <p className="mt-1 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
               {m.role}
             </p>
-            <p className="mt-3 text-sm text-muted">{m.body}</p>
+            {m.body.map((p) => (
+              <p key={p} className="mt-3 text-sm text-muted">
+                {p}
+              </p>
+            ))}
             {m.tags ? (
               <div className="mt-3 flex flex-wrap gap-2">
                 {m.tags.map((t) => (
@@ -71,7 +75,10 @@ export default function HakkimdaPage() {
       <h2 className="mt-16 border-l-4 border-accent pl-4 font-display text-3xl text-text">
         Atölye ve ekipman
       </h2>
-      <p className="mt-2 text-sm text-muted">TODO: atölye fotoğrafları</p>
+      <p className="mt-2 text-sm text-muted">
+        Beş yazıcı: iki P1S, bir P1P, bir A1 ve bir SLA reçine. AMS ile renk ve
+        destek ayrımı.
+      </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {equipment.map((e) => (
           <li key={e.id}>

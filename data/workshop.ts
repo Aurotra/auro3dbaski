@@ -6,9 +6,13 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { id: "followers", label: "Toplam takipçi", value: 0, suffix: "" }, // TODO: gerçek rakam
-  { id: "views", label: "Toplam izlenme", value: 0, suffix: "" }, // TODO: gerçek rakam
-  { id: "parts", label: "Üretilen parça", value: 0, suffix: "" }, // TODO: gerçek rakam
+  { id: "views", label: "Toplam izlenme", value: 3_000_000, suffix: "+" },
+  {
+    id: "parts",
+    label: "Test edilen / üretilen parça",
+    value: 1_200,
+    suffix: "+",
+  },
   { id: "printers", label: "Aktif yazıcı", value: 5, suffix: "" },
 ];
 
@@ -71,26 +75,26 @@ export type Milestone = {
 export const timeline: Milestone[] = [
   {
     id: "t1",
-    date: "TODO: tarih",
-    title: "İlk yazıcı",
-    body: "TODO: olay",
+    date: "Eylül 2024",
+    title: "Kanalın kuruluşu",
+    body: "Auro 3D Baskı kanalının kuruluşu ve ilk teknik içerik serisinin yayına başlaması.",
   },
   {
     id: "t2",
-    date: "TODO: tarih",
-    title: "İlk viral video",
-    body: "TODO: olay",
+    date: "Aralık 2024",
+    title: "1 milyon izlenme",
+    body: "İlk viral teknik içerikle birlikte 1 milyon izlenme barajının aşılması.",
   },
   {
     id: "t3",
-    date: "TODO: tarih",
-    title: "İlk ürün satışı",
-    body: "TODO: olay",
+    date: "Şubat 2025",
+    title: "Parkur genişlemesi",
+    body: "Atölye ekipman parkurunun genişletilmesi ve ileri mühendislik filamentlerinin testlerine başlanması.",
   },
   {
     id: "t4",
-    date: "TODO: tarih",
-    title: "İlk marka işbirliği",
-    body: "TODO: olay",
+    date: "Temmuz 2026",
+    title: "3 milyon izlenme",
+    body: "Toplamda 3 milyondan fazla izlenmeye ve 7 binin üzerinde topluluk büyüklüğüne ulaşılması.",
   },
 ];

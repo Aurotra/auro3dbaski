@@ -75,9 +75,7 @@ export default async function TermPage({
           <a href={term.videoHref} className="text-accent-2">
             İlgili video
           </a>
-        ) : (
-          <span className="text-sm text-muted">TODO: ilgili video</span>
-        )}
+        ) : null}
         {term.calculatorHref ? (
           <Link href={term.calculatorHref} className="text-accent-2">
             Hesaplayıcı
