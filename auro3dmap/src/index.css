@@ -1,0 +1,175 @@
+/*
+  Auro3DMap palette — split-complementary (matematiksel uyum)
+  ----------------------------------------------------------
+  Ana hue (soğuk):  Teal  H ≈ 192°  → harita, su, ikincil aksiyon
+  Karşıt bölge:     Amber H ≈ 42°   → Auro marka, birincil CTA, seçim
+  (Tam tamamlayıcı 192+180=12°; split: 42° ve 342° — 42° kullanılıyor)
+
+  60-30-10 (Refactoring UI / klasik kural):
+  - %60 soğuk nötr yüzeyler (aynı hue ailesi, düşük chroma)
+  - %30 teal ailesi
+  - %10 amber vurgu
+
+  Katman renkleri Organic Maps / kartografik semantik ile uyumlu.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* —— Nötrler (cool slate, H≈200°) —— */
+  --bg: #eef3f5;
+  --panel: #ffffff;
+  --panel-2: #f4f8fa;
+  --ink: #1a262c;
+  --muted: #5a6b74;
+  --line: rgba(26, 38, 44, 0.1);
+
+  /* —— Teal skalası (canlı, "modern SaaS" cyan-teal) —— */
+  --teal-50: #e6f8fb;
+  --teal-100: #c5edf3;
+  --teal-500: #0ea9c2;
+  --teal-600: #0c8aa1;
+  --teal-700: #0a6a7d;
+
+  /* —— Amber / Auro skalası (daha sıcak, canlı turuncu-amber) —— */
+  --amber-400: #ffbf4d;
+  --amber-500: #f6a623;
+  --amber-600: #dd8712;
+  --amber-700: #b06a0d;
+
+  /* —— Semantik tokenlar —— */
+  --brand: var(--amber-500);
+  --brand-bright: var(--amber-400);
+  --brand-deep: var(--amber-700);
+  --accent: var(--teal-500);
+  --accent-deep: var(--teal-700);
+  --water: var(--teal-500);
+  --danger: #e0503f;
+
+  --shadow: 0 12px 32px rgba(26, 38, 44, 0.08);
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  background:
+    radial-gradient(1000px 620px at 6% -10%, rgba(246, 166, 35, 0.14), transparent 55%),
+    radial-gradient(900px 560px at 100% 0%, rgba(14, 169, 194, 0.13), transparent 52%),
+    linear-gradient(180deg, #f8fbfc 0%, var(--bg) 100%);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  font-weight: 600;
+}
+
+/* —— Kaydırıcılar (varsayılan tarayıcı görünümü çok "eski" kalıyordu) —— */
+input[type='range'] {
+  width: 100%;
+  margin: 0.45rem 0 0.15rem;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal-500), var(--brand));
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--brand-deep);
+  box-shadow: 0 2px 8px rgba(26, 38, 44, 0.3);
+  cursor: pointer;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+input[type='range']:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal-500), var(--brand));
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--brand-deep);
+  box-shadow: 0 2px 8px rgba(26, 38, 44, 0.3);
+  cursor: pointer;
+}
+
+/* —— Ortak animasyonlar —— */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marchAnts {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

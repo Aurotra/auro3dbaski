@@ -1,0 +1,24 @@
+# Render Blueprint — backend'i tek tıkla dağıtmak için.
+# Kullanım: Render Dashboard → New → Blueprint → bu repoyu seçin.
+# Ücretsiz planda: 15 dk hareketsizlikte uykuya geçer, ilk istekte ~30-50 sn
+# gecikme olur; sürekli açık kalması için ücretli plana geçirilebilir.
+services:
+  - type: web
+    name: auro3dmap-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # Vercel'e taşıdığınız ana domain(ler)i buraya virgülle ayırarak yazın,
+      # örn. https://siteniz.com,https://www.siteniz.com — deploy'dan sonra
+      # Render Dashboard > Environment üzerinden güncelleyin.
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: LOG_LEVEL
+        value: INFO
+      # Docker imajında varsayılan önbellek yolu farklı bir dizine denk
+      # geliyor; sabit ve yazılabilir bir yol veriyoruz.
+      - key: AURO_CACHE_DIR
+        value: /tmp/ml-cache
