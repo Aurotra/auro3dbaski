@@ -33,7 +33,7 @@ export function ProofCompare() {
               className={cn(
                 "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
                 i === pair
-                  ? "border-accent bg-accent text-ink"
+                  ? "btn-glow border-transparent"
                   : "border-ink/15 text-ink",
               )}
             >

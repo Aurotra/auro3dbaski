@@ -34,7 +34,7 @@ export function ShopGrid() {
             className={cn(
               "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
               cat === c.id
-                ? "border-accent bg-accent text-ink"
+                ? "btn-glow border-transparent"
                 : "border-white/15 text-muted",
             )}
           >
@@ -87,7 +87,7 @@ export function ShopGrid() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-md bg-accent px-3 py-2 font-display text-sm text-ink"
+                    className="btn-glow rounded-md px-3 py-2 font-display text-sm font-semibold"
                   >
                     {platformLabel[key]}
                   </a>

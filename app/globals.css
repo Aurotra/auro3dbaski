@@ -5,13 +5,23 @@
   --font-sans: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, monospace;
 
-  --color-ink: #1e2a38;
-  --color-ink-soft: #2a3949;
-  --color-accent: #e8722c;
-  --color-accent-2: #f2a65a;
-  --color-paper: #f5f3ef;
-  --color-text: #edeff2;
-  --color-muted: #8fa0b3;
+  --color-ink: #080d1e;
+  --color-ink-soft: #10182e;
+  --color-accent: #22d3ee;
+  --color-accent-2: #4ade80;
+  --color-violet: #a855f7;
+  --color-paper: #e8eef8;
+  --color-text: #ffffff;
+  --color-muted: #9bb4d0;
+}
+
+@utility glow-bar {
+  background: linear-gradient(90deg, #c026d3, #a855f7, #22d3ee, #4ade80);
+}
+
+@utility btn-glow {
+  background-image: linear-gradient(90deg, #a855f7 0%, #22d3ee 48%, #4ade80 100%);
+  color: #080d1e;
 }
 
 @layer base {
@@ -38,11 +48,14 @@
   body {
     min-height: 100dvh;
     font-family: var(--font-sans);
-    background: var(--color-ink);
+    background:
+      radial-gradient(900px 420px at 92% -8%, color-mix(in srgb, #a855f7 22%, transparent), transparent 60%),
+      radial-gradient(700px 380px at -8% 18%, color-mix(in srgb, #22d3ee 16%, transparent), transparent 55%),
+      var(--color-ink);
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-accent) 55%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 50%, transparent);
     color: var(--color-ink);
   }
 

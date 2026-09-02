@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Auro3DBask1">
-  <rect width="32" height="32" rx="4" fill="#1E2A38"/>
-  <path d="M16 7 8 26h3.8l1.5-3.8h5.4L20.2 26H24L16 7Zm0 6.6 2 5.4h-4l2-5.4Z" fill="#E8722C"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Auro3DBaskı">
+  <defs>
+    <linearGradient id="g" x1="6" y1="28" x2="26" y2="4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A855F7"/>
+      <stop offset="0.5" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#4ADE80"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="#080D1E"/>
+  <path d="M16 8 7.2 26h3.9l1.5-3.9h6.8l1.5 3.9H25L16 8Zm0 6.8 2.2 5.5h-4.4L16 14.8Z" fill="url(#g)"/>
+  <path d="M14.7 4.6h2.6v2.8h-2.6z" fill="url(#g)"/>
+  <path d="M13.8 3.6h4.4l.7.9H13.1l.7-.9Z" fill="#fff"/>
+  <path d="M16 1.8 17.2 4h-2.4L16 1.8Z" fill="#fff"/>
 </svg>

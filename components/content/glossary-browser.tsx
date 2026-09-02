@@ -35,7 +35,7 @@ export function GlossaryBrowser() {
             className={cn(
               "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
               cat === c.id
-                ? "border-accent bg-accent text-ink"
+                ? "btn-glow border-transparent"
                 : "border-white/15 text-muted",
             )}
           >

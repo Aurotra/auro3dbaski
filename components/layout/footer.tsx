@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/logo";
 import { site } from "@/lib/site";
 
 const footerNav = [
@@ -18,8 +19,8 @@ export function SiteFooter() {
     <footer className="border-t border-white/10 bg-ink-soft">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="font-display text-xl text-text">{site.name}</p>
-          <p className="mt-2 max-w-xs text-sm text-muted">
+          <BrandLogo size="md" />
+          <p className="mt-3 max-w-xs text-sm text-muted">
             Atölyenin içinden. Ölçerek, basarak, göstererek.
           </p>
         </div>

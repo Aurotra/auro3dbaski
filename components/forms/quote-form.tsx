@@ -55,7 +55,7 @@ export function QuoteForm() {
       </label>
       <button
         type="submit"
-        className="w-fit rounded-md bg-accent px-4 py-2.5 font-display text-sm text-ink hover:bg-accent-2"
+        className="btn-glow w-fit rounded-md px-4 py-2.5 font-display text-sm font-semibold hover:brightness-110"
       >
         Teklif iste
       </button>

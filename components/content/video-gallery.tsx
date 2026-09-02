@@ -79,7 +79,7 @@ function Chip({
       onClick={onClick}
       className={cn(
         "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
-        active ? "border-accent bg-accent text-ink" : "border-white/15 text-muted",
+        active ? "btn-glow border-transparent" : "border-white/15 text-muted",
       )}
     >
       {children}

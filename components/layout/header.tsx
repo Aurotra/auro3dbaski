@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { nav, site } from "@/lib/site";
+import { nav } from "@/lib/site";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,10 +34,8 @@ export function SiteHeader() {
           : "border-transparent bg-ink/40",
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="font-display text-lg tracking-tight text-text">
-          {site.name}
-        </Link>
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2">
+        <BrandLogo size="md" />
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana">
           {nav.map((item) => (
             <Link
@@ -82,6 +81,7 @@ export function SiteHeader() {
           </ul>
         </nav>
       ) : null}
+      <div className="glow-bar h-0.5 w-full" aria-hidden="true" />
     </header>
   );
 }

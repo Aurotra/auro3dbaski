@@ -1,3 +1,4 @@
+import { BrandLogo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -16,8 +17,9 @@ export function Hero() {
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-28">
-        <p className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent-2">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-20">
+        <BrandLogo href={null} size="lg" />
+        <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent">
           FDM · SLA · içerik
         </p>
         <h1 className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] tracking-tight text-text sm:text-7xl">
