@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "inline",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
     return [
@@ -28,6 +31,21 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "www.auro3dbaski.com" }],
         destination: "https://auro3dbaski.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/hizmetler",
+        destination: "/ozel-uretim",
+        permanent: true,
+      },
+      {
+        source: "/teklif",
+        destination: "/ozel-uretim",
+        permanent: true,
+      },
+      {
+        source: "/malzemeler",
+        destination: "/ozel-uretim",
         permanent: true,
       },
     ];

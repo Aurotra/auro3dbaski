@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+
+  --color-ink: #1e2a38;
+  --color-ink-soft: #2a3949;
+  --color-accent: #e8722c;
+  --color-accent-2: #f2a65a;
+  --color-paper: #f5f3ef;
+  --color-text: #edeff2;
+  --color-muted: #8fa0b3;
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-text);
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    background: var(--color-ink);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 55%, transparent);
+    color: var(--color-ink);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
