@@ -95,38 +95,58 @@ cd ~/auro3dmap && git pull
 cd deploy && docker compose up -d --build
 ```
 
-## 5) Frontend'i Vercel'e dağıt
+## 5) Frontend'i Vercel'e dağıt — CLI ile bağımsız proje (GitHub import DEĞİL)
 
-1. Vercel Dashboard → **Add New → Project** → bu repo (Root Directory: repo
-   kökü — `vercel.json` zaten hazır, framework Vite otomatik algılanır).
-2. **Environment Variables**:
-   ```
-   VITE_API_BASE=https://api.siteniz.com
-   ```
-3. Deploy edin — size `https://auro3dmap.vercel.app` gibi bir adres verir.
+Ana site (`auro3dbaski.com`) başka birinin GitHub hesabındaki bir repoda ve siz
+sadece collaborator'sünüz — Vercel'in GitHub App'i o hesaba kurulu olmadığı için
+repo Vercel'in "Import Git Repository" listesinde görünmez. Bunu **Vercel Pro
+almadan** çözmenin yolu, repoyu import etmek yerine `auro3dmap/` klasörünü
+kendi Vercel hesabınızdan **CLI ile bağımsız bir proje** olarak deploy etmek:
+
+```bash
+cd auro3dmap
+vercel link --yes --project auro3dmap --scope <kendi-takımınız>
+vercel deploy --prod --yes --scope <kendi-takımınız>
+```
+
+Notlar:
+- `.vercelignore` dosyası `backend/`, `deploy/`, `render.yaml` klasörlerini
+  yükleme dışı bırakır — bunlar olmasa Vercel'in monorepo/microfrontend
+  algılayıcısı `backend/`'i ayrı bir servis sanıp hata veriyor.
+- `vite.config.ts`'de prod build `base: '/map/'` ile yapılır (bkz. adım 6) —
+  bu sayede JS/CSS dosyaları `/map/assets/...` yoluyla referanslanır ve ana
+  sitenin rewrite'ı üzerinden doğru şekilde servis edilir.
+- Backend hazır olduğunda `vercel env add VITE_API_BASE production` ile
+  `https://api.siteniz.com` değerini girip tekrar `vercel deploy --prod` çalıştırın.
+- Bu proje GitHub'a bağlı DEĞİL; kod her değiştiğinde tekrar
+  `vercel deploy --prod --yes --scope <takım>` çalıştırmanız gerekir.
 
 ## 6) Ana Next.js siteye alt yol olarak bağla
 
-Ana sitenizin `next.config.js`'ine ekleyin (`<alt-yol>` ve Vercel adresini
-kendi değerlerinizle değiştirin):
+Ana sitenin `next.config.ts`'ine ekleyin (kendi Vercel adresinizi yazın):
 
-```js
-const nextConfig = {
-  async rewrites() {
-    return [
-      { source: '/harita-3d-baski', destination: 'https://auro3dmap.vercel.app' },
-      { source: '/harita-3d-baski/:path*', destination: 'https://auro3dmap.vercel.app/:path*' },
-    ]
-  },
-}
-module.exports = nextConfig
+```ts
+async rewrites() {
+  return [
+    { source: '/map', destination: 'https://auro3dmap.vercel.app' },
+    { source: '/map/:path*', destination: 'https://auro3dmap.vercel.app/:path*' },
+  ]
+},
 ```
 
 Bu gerçek bir reverse-proxy'dir (iframe değil) — kullanıcı hep
-`siteniz.com/harita-3d-baski` görür. Ana siteyi yeniden deploy edin.
+`auro3dbaski.com/map` görür. Ana siteyi yeniden deploy edin.
+
+**Önemli — eğer `auro3dmap/` ana sitenin repo'suna alt klasör olarak eklendiyse**,
+ana sitenin `tsconfig.json` (`exclude`) ve `eslint.config.mjs` (`ignores`)
+dosyalarına `auro3dmap` eklemeniz şart; yoksa Next'in type-check/lint adımı
+`auro3dmap`'in kendi bağımlılıklarını (maplibre-gl, three, vb.) bulamayıp
+**her deploy'u başarısız yapar** (bu proje için de başımıza geldi — bkz. commit
+geçmişi). `next.config.ts`'ye `outputFileTracingRoot` eklemek de "multiple
+lockfiles" uyarısını giderir.
 
 Uygulamanın backend çağrıları tarayıcıdan doğrudan `api.siteniz.com`'a gider;
-bu yüzden 4. adımdaki `ALLOWED_ORIGINS`'te **ana domain'in** (`siteniz.com`,
+bu yüzden backend `ALLOWED_ORIGINS`'te **ana domain'in** (`auro3dbaski.com`,
 `*.vercel.app` değil) olması şart — CORS kontrolüne giren, kullanıcının adres
 çubuğunda gördüğü origin'dir.
 
@@ -134,9 +154,11 @@ bu yüzden 4. adımdaki `ALLOWED_ORIGINS`'te **ana domain'in** (`siteniz.com`,
 
 - [ ] `curl https://api.siteniz.com/health` → 200 (HTTPS sertifikası geçerli)
 - [ ] Backend `.env`: `DOMAIN` ve `ALLOWED_ORIGINS` gerçek değerlerle dolu
-- [ ] Vercel `VITE_API_BASE` = `https://api.siteniz.com`
-- [ ] Ana sitenin `next.config.js`'inde rewrite eklenip deploy edildi
-- [ ] `siteniz.com/<alt-yol>` üzerinden alan seçip model üretilebiliyor
+- [x] Vercel'de bağımsız `auro3dmap` projesi CLI ile deploy edildi
+- [ ] `VITE_API_BASE` = `https://api.siteniz.com` (backend hazır olunca eklenecek)
+- [x] Ana sitenin `next.config.ts`'inde `/map` rewrite'ı eklenip deploy edildi
+- [x] Ana sitenin `tsconfig.json`/`eslint.config.mjs`'inde `auro3dmap` exclude edildi
+- [x] `auro3dbaski.com/map` üzerinden site açılıyor, JS/CSS 200 dönüyor
 - [ ] VM'i yeniden başlatıp (`sudo reboot`) backend'in kendiliğinden
       ayağa kalktığını doğruladınız
 - [ ] Tarayıcı konsolunda CORS/mixed-content hatası yok

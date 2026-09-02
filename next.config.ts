@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // `auro3dmap/` alt klasörü kendi package-lock.json'ına sahip ayrı bir
+  // proje (Vercel'de bağımsız deploy edilir) — Next'in yanlışlıkla üst
+  // dizinde bir workspace root'u algılamasını önlemek için sabitliyoruz.
+  outputFileTracingRoot: path.resolve(__dirname),
   images: {
     formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,
@@ -22,6 +27,15 @@ const nextConfig: NextConfig = {
             value: "camera=(), microphone=(), geolocation=()",
           },
         ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      { source: "/map", destination: "https://auro3dmap.vercel.app" },
+      {
+        source: "/map/:path*",
+        destination: "https://auro3dmap.vercel.app/:path*",
       },
     ];
   },
