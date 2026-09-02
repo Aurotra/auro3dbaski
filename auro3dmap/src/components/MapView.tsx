@@ -1,7 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import type { FeatureCollection } from 'geojson'
+
+// MapLibre v6, worker script URL'ini `import.meta.url` ile otomatik bulmaya
+// çalışır ama Vite'ın tek-dosya production build'inde bu doğru çözülmüyor —
+// worker isteği site köküne (`/assets/maplibre-gl.mjs`) gidip 404/HTML
+// döndüğü için karolar hiç yüklenmiyordu. `?worker&url` sorgusu worker'ı
+// kendi `maplibre-gl-shared.mjs` bağımlılığıyla birlikte bağımsız bir chunk
+// olarak derleyip doğru (base path dahil) URL'i veriyor.
+maplibregl.setWorkerUrl(maplibreWorkerUrl)
 import type { SelectionBounds } from '../types'
 import { trackCollection, trackExtent, type LonLat } from '../lib/gpxParse'
 import {
