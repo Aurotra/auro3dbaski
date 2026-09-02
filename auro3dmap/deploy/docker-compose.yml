@@ -1,0 +1,40 @@
+# Oracle Cloud "Always Free" VM (veya herhangi bir Docker'lı VPS) üzerinde
+# backend'i + otomatik HTTPS sağlayan Caddy'yi birlikte çalıştırır.
+# Kullanım: bkz. ../DEPLOY.md
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - AURO_ML_CACHE_MAX_BYTES=${AURO_ML_CACHE_MAX_BYTES:-2147483648}
+      # Uygulamanın kendi varsayılan yolu (repo köküne göre) container içinde
+      # farklı bir dizine denk gelir — kalıcı volume ile eşleşsin diye sabitliyoruz.
+      - AURO_CACHE_DIR=/data/ml-cache
+    volumes:
+      - ml_cache:/data/ml-cache
+    expose:
+      - '8001'
+
+  caddy:
+    image: caddy:2-alpine
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+
+volumes:
+  ml_cache:
+  caddy_data:
+  caddy_config:

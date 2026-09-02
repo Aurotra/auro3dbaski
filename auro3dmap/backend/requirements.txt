@@ -1,0 +1,12 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+httpx>=0.27.0
+numpy>=2.0.0
+pillow>=11.0.0
+shapely>=2.0.6
+trimesh>=4.5.0
+# trimesh'in poligon extrüzyonu için üçgenleme motoru — yoksa katmanlar sessizce boş kalıyor
+mapbox-earcut>=1.0.1
+gpxpy>=1.6.2
+lxml>=5.3.0
