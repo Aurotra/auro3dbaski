@@ -41,6 +41,12 @@ export const nav = [
   { href: "/iletisim", label: "İletişim" },
 ] as const;
 
+/** Menüdeki Özel Üretim sayfasından ayrı: teklif formu. */
+export const ctaNav = {
+  href: "/ozel-uretim#form",
+  label: "Teklif Al",
+} as const;
+
 export function formspreeAction(): string {
   const id = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
   if (!id) {

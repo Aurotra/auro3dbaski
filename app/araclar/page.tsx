@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { PrintCostCalc } from "@/components/calculators/print-cost";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Araçlar",
-  description: "Filament maliyet ve geçme toleransı hesaplayıcıları.",
+  description: "3D baskı maliyet ve gramaj hesaplayıcı, geçme toleransı.",
   path: "/araclar",
 });
 
@@ -13,20 +14,20 @@ export default function AraclarPage() {
       <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
         Araçlar
       </h1>
-      <ul className="mt-8 grid gap-4 md:grid-cols-2">
-        <li>
-          <Link
-            href="/araclar/hesaplayicilar"
-            className="block rounded-md border border-accent/40 bg-ink-soft p-5"
-          >
-            <p className="font-mono text-xs uppercase text-accent-2">Hazır</p>
-            <h2 className="mt-2 font-display text-2xl text-text">Hesaplayıcılar</h2>
-            <p className="mt-2 text-sm text-muted">
-              Filament maliyet ve geçme toleransı.
-            </p>
-          </Link>
-        </li>
-      </ul>
+      <p className="mt-3 max-w-xl text-muted">
+        Filament gramajı ve baskı süresinden taban maliyeti canlı hesaplar.
+        Sayılar başlangıç noktası — yazıcıda doğrula.
+      </p>
+      <div className="mt-10 max-w-3xl">
+        <PrintCostCalc />
+      </div>
+      <p className="mt-8 text-sm text-muted">
+        Fire payı, kWh tarifesi ve geçme toleransı için{" "}
+        <Link href="/araclar/hesaplayicilar" className="text-accent-2">
+          ayrıntılı hesaplayıcılar
+        </Link>
+        .
+      </p>
     </div>
   );
 }

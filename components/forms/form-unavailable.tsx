@@ -22,11 +22,11 @@ export function FormUnavailable() {
       role="status"
       className="rounded-md border border-white/10 bg-ink-soft p-5 text-sm text-muted"
     >
-      Sistem şu an bakımda, lütfen doğrudan{" "}
+      Form geçici olarak bakımda, lütfen{" "}
       <a href={`mailto:${site.email}`} className="text-accent-2">
         {site.email}
       </a>{" "}
-      adresine yazın.
+      adresinden bize ulaşın.
     </p>
   );
 }

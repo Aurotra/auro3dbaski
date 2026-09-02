@@ -2,6 +2,22 @@ import { ProductCard } from "@/components/shop/product-card";
 import { products, shopierStoreUrl } from "@/data/products";
 
 export function ShopGrid() {
+  if (products.length === 0) {
+    return (
+      <p className="rounded-md border border-white/10 bg-ink-soft p-5 text-sm text-muted">
+        Vitrin Shopier’de güncellenir.{" "}
+        <a
+          href={shopierStoreUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent-2"
+        >
+          Shopier mağazasını aç
+        </a>
+      </p>
+    );
+  }
+
   return (
     <>
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

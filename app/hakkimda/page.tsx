@@ -3,7 +3,6 @@ import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { story, team } from "@/data/team";
 import { equipment, timeline, workshopShots } from "@/data/workshop";
-import { LoopVideo } from "@/components/media/loop-video";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
@@ -40,10 +39,13 @@ export default function HakkimdaPage() {
           </div>
         </div>
         <figure className="relative aspect-[4/3] overflow-hidden rounded-md border border-white/10 bg-ink-soft">
-          <LoopVideo
-            src="/videos/atolye.mp4"
-            poster="/images/atolye-hero.webp"
-            className="absolute inset-0"
+          <Image
+            src="/images/atolye-hero.webp"
+            alt="Atölyede isimlik baskısı — yazıcı kafa ve AMS"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent px-4 pb-4 pt-10">
             <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
@@ -110,7 +112,7 @@ export default function HakkimdaPage() {
         Atölyeden çıkanlar
       </h2>
       <p className="mt-2 text-sm text-muted">
-        Kendi çekimlerimiz — lamba, keman, tekne, sardalya kutusu, miras kutusu.
+        Kendi çekimlerimiz — lamba, keman, tekne, sardalya kutusu, Anı Müzesi.
       </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {workshopShots.map((shot) => (

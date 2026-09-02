@@ -9,6 +9,7 @@ type Common = {
 
 type LinkProps = Common & {
   href: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 type BtnProps = Common &
@@ -33,6 +34,7 @@ export function Button(props: LinkProps | BtnProps) {
       <Link
         href={props.href}
         className={styles}
+        onClick={props.onClick}
         {...(external
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}

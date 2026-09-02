@@ -33,6 +33,7 @@ export default function Page() {
             src="/videos/uretim.mp4"
             poster="/images/uretim.webp"
             className="absolute inset-0"
+            sizes="(max-width: 1024px) 100vw, 40vw"
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent px-4 pb-4 pt-10">
             <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
@@ -65,7 +66,9 @@ export default function Page() {
         ))}
       </ul>
       <div className="mt-14 grid gap-10 lg:grid-cols-2">
-        <QuoteForm />
+        <div id="form" className="scroll-mt-28">
+          <QuoteForm />
+        </div>
         <div>
           <h2 className="border-l-4 border-accent pl-4 font-display text-2xl text-text">
             Teknik üretim SSS

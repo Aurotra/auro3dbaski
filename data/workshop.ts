@@ -26,17 +26,17 @@ export const equipment: Equipment[] = [
   {
     id: "flashforge",
     name: "Flashforge",
-    use: "Yüksek tekrarlanabilirlikli FDM üretim süreçleri.",
+    use: "Yüksek tekrarlanabilirlikli FDM üretim ve seri imalat süreçleri.",
   },
   {
     id: "bambu",
     name: "Bambu Lab",
-    use: "Hızlı prototipleme ve mühendislik filamenti (PA-CF, ASA, PC) testleri.",
+    use: "Hızlı prototipleme, ileri mühendislik filamentleri (PA-CF, ASA, PC) ve dayanım testleri.",
   },
   {
     id: "elegoo",
     name: "Elegoo",
-    use: "Hassas detaylı SLA reçine baskıları ve büyük hacimli FDM üretimi.",
+    use: "Yüksek çözünürlüklü SLA reçine modelleri ve geniş hacimli FDM baskılar.",
   },
 ];
 
@@ -72,10 +72,10 @@ export const workshopShots = [
     caption: "Sardalya",
   },
   {
-    id: "miras",
+    id: "ani-muzesi",
     src: "/images/workshop/miras-kutu.webp",
-    alt: "Turuncu gölge kutusu, minyatür çerçeveler ve figürinler",
-    caption: "Miras",
+    alt: "Anı Müzesi — turuncu gölge kutusu, minyatür çerçeveler ve figürinler",
+    caption: "Anı Müzesi",
   },
 ] as const;
 

@@ -7,7 +7,8 @@ import { FormUnavailable, useFormspreeReady } from "@/components/forms/form-unav
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const FILE_ACCEPT = ".step,.stp,.stl,.3mf";
-const FILE_HINT = "STEP, STL, 3MF (Maks. 25MB veya Drive/WeTransfer bağlantısı)";
+const FILE_HINT =
+  "Desteklenen formatlar: .STEP, .STP, .STL, .3MF (Maksimum 25MB veya Drive/WeTransfer bağlantısı).";
 
 export function QuoteForm() {
   const ready = useFormspreeReady();
@@ -79,9 +80,7 @@ export function QuoteForm() {
           accept={FILE_ACCEPT}
           className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text file:mr-3 file:rounded-md file:border-0 file:bg-white/10 file:px-3 file:py-1 file:text-sm file:text-text"
         />
-        <span className="font-mono text-[0.68rem] uppercase tracking-[0.08em] text-muted">
-          {FILE_HINT}
-        </span>
+        <span className="text-xs text-muted">{FILE_HINT}</span>
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Drive / WeTransfer bağlantısı

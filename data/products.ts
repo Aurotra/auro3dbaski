@@ -6,8 +6,8 @@ export type Product = {
   price: string;
   imageUrl: string;
   shopierUrl: string;
-  material?: string;
-  shipping?: string;
+  material: string;
+  shipping: string;
 };
 
 /**
@@ -22,7 +22,7 @@ export const products: Product[] = [
     imageUrl: "/images/shop/41163104.webp",
     shopierUrl: "https://www.shopier.com/auro3dbaski/41163104",
     material: "PETG",
-    shipping: "1–3 iş günü",
+    shipping: "1-2 İş Günü",
   },
   {
     id: "50347929",
@@ -31,7 +31,7 @@ export const products: Product[] = [
     imageUrl: "/images/shop/50347929.webp",
     shopierUrl: "https://www.shopier.com/auro3dbaski/50347929",
     material: "PLA+",
-    shipping: "1–3 iş günü",
+    shipping: "1-2 İş Günü",
   },
   {
     id: "49717093",
@@ -40,7 +40,7 @@ export const products: Product[] = [
     imageUrl: "/images/shop/49717093.webp",
     shopierUrl: "https://www.shopier.com/auro3dbaski/49717093",
     material: "PLA+",
-    shipping: "1–3 iş günü",
+    shipping: "1-2 İş Günü",
   },
   {
     id: "49717068",
@@ -49,6 +49,6 @@ export const products: Product[] = [
     imageUrl: "/images/shop/49717068.webp",
     shopierUrl: "https://www.shopier.com/auro3dbaski/49717068",
     material: "PLA+",
-    shipping: "1–3 iş günü",
+    shipping: "1-2 İş Günü",
   },
 ];

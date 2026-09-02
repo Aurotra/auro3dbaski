@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { nav } from "@/lib/site";
+import { ctaNav, nav } from "@/lib/site";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -19,11 +21,29 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
+    const prev = document.body.style.overflow;
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prev;
     };
   }, [open]);
+
+  function close() {
+    setOpen(false);
+  }
 
   return (
     <header
@@ -46,8 +66,8 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button href="/iletisim" className="ml-2">
-            Teklif
+          <Button href={ctaNav.href} className="ml-2">
+            {ctaNav.label}
           </Button>
         </nav>
         <button
@@ -60,30 +80,41 @@ export function SiteHeader() {
           {open ? "Kapat" : "Menü"}
         </button>
       </div>
-      {open ? (
-        <nav
-          id="mobile-nav"
-          className="border-t border-white/10 bg-ink px-4 py-4 lg:hidden"
-          aria-label="Mobil"
-        >
-          <ul className="grid gap-1">
+      <nav
+        id="mobile-nav"
+        aria-label="Mobil"
+        aria-hidden={!open}
+        className={cn(
+          "grid overflow-hidden border-white/10 bg-ink lg:hidden motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200",
+          open
+            ? "grid-rows-[1fr] border-t opacity-100"
+            : "pointer-events-none grid-rows-[0fr] opacity-0",
+        )}
+      >
+        <div className="min-h-0 px-4">
+          <ul className="grid gap-1 py-4">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  tabIndex={open ? 0 : -1}
                   className="block py-2 font-mono text-sm uppercase tracking-[0.12em] text-text"
-                  onClick={() => setOpen(false)}
+                  onClick={close}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <Button href="/iletisim" className="mt-4 w-full">
-            Teklif
+          <Button
+            href={ctaNav.href}
+            className="mb-4 w-full"
+            onClick={close}
+          >
+            {ctaNav.label}
           </Button>
-        </nav>
-      ) : null}
+        </div>
+      </nav>
       <div className="glow-bar h-0.5 w-full" aria-hidden="true" />
     </header>
   );

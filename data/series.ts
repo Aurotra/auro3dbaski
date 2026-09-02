@@ -22,9 +22,9 @@ export const series: Series[] = [
     episodeCount: 0, // TODO: bölüm sayısı
   },
   {
-    slug: "miras-modelleme",
-    title: "Miras Modelleme",
-    summary: "Eski bir parçayı ölçüp yeniden basılabilir hale getirmek.",
+    slug: "ani-muzesi",
+    title: "Anı Müzesi",
+    summary: "Anıları bir gölge kutuda toplayan parça — çerçeve, figürin, katman.",
     coverUrl: "/images/workshop/miras-cover.webp",
     episodeCount: 0, // TODO: bölüm sayısı
   },

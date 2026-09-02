@@ -71,17 +71,20 @@ export default async function TermPage({
         </p>
       </section>
       <div className="mt-8 flex flex-wrap gap-4">
-        {term.videoHref ? (
-          <a href={term.videoHref} className="text-accent-2">
-            İlgili video
-          </a>
-        ) : null}
+        <a
+          href={term.videoHref ?? site.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex rounded-md border border-accent/50 px-3 py-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2 hover:border-accent-2"
+        >
+          İlgili Video
+        </a>
         {term.calculatorHref ? (
-          <Link href={term.calculatorHref} className="text-accent-2">
+          <Link href={term.calculatorHref} className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
             Hesaplayıcı
           </Link>
         ) : (
-          <Link href="/araclar/hesaplayicilar" className="text-accent-2">
+          <Link href="/araclar" className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
             Hesaplayıcılar
           </Link>
         )}

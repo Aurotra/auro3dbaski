@@ -1,6 +1,4 @@
-import { FaqAccordion } from "@/components/content/faq-accordion";
 import { GlossaryBrowser } from "@/components/content/glossary-browser";
-import { glossaryAccordion } from "@/data/glossary";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -17,18 +15,9 @@ export default function Page() {
       </h1>
       <p className="mt-3 max-w-2xl text-muted">
         On beş terim: ne işe yarar, ne zaman basılır, Bambu Studio’da nerede durur.
-        Kısa cevap aşağıda; ayrıntı kartlara tıklayınca açılır.
+        Üstteki arama anında süzer; İlgili Video kanalın YouTube’una açılır.
       </p>
-      <h2 className="mt-10 border-l-4 border-accent pl-4 font-display text-2xl text-text">
-        15 maddelik sözlük
-      </h2>
-      <div className="mt-4">
-        <FaqAccordion items={glossaryAccordion()} />
-      </div>
-      <h2 className="mt-14 border-l-4 border-accent pl-4 font-display text-2xl text-text">
-        Terim ara
-      </h2>
-      <div className="mt-4">
+      <div className="mt-8">
         <GlossaryBrowser />
       </div>
     </div>

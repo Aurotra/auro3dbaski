@@ -10,6 +10,8 @@ export function Hero() {
         src="/videos/hero.mp4"
         poster="/posters/hero.webp"
         className="absolute inset-0"
+        priority
+        sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-20">
