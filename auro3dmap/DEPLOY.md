@@ -152,16 +152,28 @@ bu yüzden backend `ALLOWED_ORIGINS`'te **ana domain'in** (`auro3dbaski.com`,
 
 ## Kontrol listesi
 
-- [ ] `curl https://api.siteniz.com/health` → 200 (HTTPS sertifikası geçerli)
-- [ ] Backend `.env`: `DOMAIN` ve `ALLOWED_ORIGINS` gerçek değerlerle dolu
-- [x] Vercel'de bağımsız `auro3dmap` projesi CLI ile deploy edildi
-- [ ] `VITE_API_BASE` = `https://api.siteniz.com` (backend hazır olunca eklenecek)
+- [x] `curl https://api.auro3dbaski.com/health` → 200 (HTTPS sertifikası geçerli, Let's Encrypt)
+- [x] Backend `.env`: `DOMAIN=api.auro3dbaski.com`, `ALLOWED_ORIGINS=https://auro3dbaski.com,https://www.auro3dbaski.com`
+- [x] Vercel'de bağımsız `auro3dmap` projesi (`btw6` takımı) CLI ile deploy edildi
+- [x] `VITE_API_BASE=https://api.auro3dbaski.com` eklendi ve redeploy edildi
 - [x] Ana sitenin `next.config.ts`'inde `/map` rewrite'ı eklenip deploy edildi
 - [x] Ana sitenin `tsconfig.json`/`eslint.config.mjs`'inde `auro3dmap` exclude edildi
 - [x] `auro3dbaski.com/map` üzerinden site açılıyor, JS/CSS 200 dönüyor
+- [x] Gerçek bir `/api/elevation` isteği ucdan uca test edildi (CORS + backend yanıtı doğru)
 - [ ] VM'i yeniden başlatıp (`sudo reboot`) backend'in kendiliğinden
-      ayağa kalktığını doğruladınız
-- [ ] Tarayıcı konsolunda CORS/mixed-content hatası yok
+      ayağa kalktığını doğrulayın (Docker `restart: always` sayesinde otomatik
+      olması gerekir, ama bir kez elle test edilmesi tavsiye edilir)
+- [x] Tarayıcı/CORS hatası yok (preflight + gerçek istek test edildi)
+
+**Sunucu bilgileri (referans):**
+- VM: Oracle Cloud, Germany Central (Frankfurt), `VM.Standard.A1.Flex` (2 OCPU/12GB), Ubuntu 24.04
+- Public IP: `130.61.220.243`
+- SSH: `ssh -i <indirdiğiniz .key dosyası> ubuntu@130.61.220.243`
+- Proje yolu (VM üzerinde): `~/auro3dmap/{backend,deploy}`
+- Güncelleme yapmak için: değişen dosyaları yeniden `scp` ile gönderin (GitHub'dan
+  bu VM'in IP'sinden anonim `git clone` GitHub tarafından 401 ile engellendi —
+  bulut IP aralıklarına karşı bilinen bir kısıtlama), sonra
+  `cd ~/auro3dmap/deploy && sudo docker compose up -d --build`.
 
 ---
 
