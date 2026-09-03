@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { MeasureLabel } from "@/components/ui/measure-label";
-import { SafeImage } from "@/components/media/safe-image";
+import { SeriesCover } from "@/components/content/series-cover";
 import { series, seriesEpisodeCount } from "@/data/series";
 
 export function SeriesGrid() {
@@ -19,11 +19,9 @@ export function SeriesGrid() {
                   className="block overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   <div className="relative aspect-[4/3]">
-                    <SafeImage
+                    <SeriesCover
                       src={item.coverUrl}
-                      alt={`${item.title} kapak görseli`}
-                      fill
-                      className="object-cover"
+                      title={item.title}
                       sizes="(max-width: 640px) 100vw, 33vw"
                     />
                   </div>

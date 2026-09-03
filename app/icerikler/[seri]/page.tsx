@@ -1,4 +1,4 @@
-import { SafeImage } from "@/components/media/safe-image";
+import { SeriesCover } from "@/components/content/series-cover";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { IdeaForm } from "@/components/forms/idea-form";
@@ -38,7 +38,7 @@ export default async function SeriPage({
   return (
     <article className="mx-auto max-w-6xl px-4 py-14">
       <div className="relative mb-8 aspect-[21/9] overflow-hidden rounded-md border border-white/10">
-        <SafeImage src={item.coverUrl} alt={item.title} fill className="object-cover" sizes="100vw" />
+        <SeriesCover src={item.coverUrl} title={item.title} sizes="100vw" />
       </div>
       <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
         {item.title}

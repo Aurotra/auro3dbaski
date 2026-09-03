@@ -7,7 +7,7 @@ export type Series = {
   slug: string;
   title: string;
   summary: string;
-  coverUrl: string;
+  coverUrl?: string;
   episodes: Episode[];
 };
 
@@ -16,7 +16,6 @@ export const series: Series[] = [
     slug: "bambu-studio-101",
     title: "Bambu Studio 101",
     summary: "Dilimleyicide hangi ayarın ne işe yaradığı — tahminsiz.",
-    coverUrl: "/images/series/bambu-studio.webp",
     episodes: [],
   },
   {
