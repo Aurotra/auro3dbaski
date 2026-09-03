@@ -5,20 +5,14 @@ export type TeamSocial = {
   href: string;
 };
 
-export type TeamDuty = {
-  heading: string;
-  body: string;
-};
-
 export type TeamMember = {
   id: "sude" | "berk";
   name: string;
   title: string;
-  role?: string;
+  role: string;
   photoUrl: string;
   photoAlt: string;
-  body?: string[];
-  duties?: TeamDuty[];
+  body: string[];
   techs: string[];
   socials: TeamSocial[];
 };
@@ -47,25 +41,14 @@ export const team: TeamMember[] = [
     id: "berk",
     name: "Berk Tepe",
     title: "Kurucu & Teknik Koordinatör",
+    role: "Yayın stratejisi · üretim · test",
     photoUrl: "/images/team/berk-mid.webp",
     photoAlt: "Berk Tepe — kurucu ve teknik koordinatör",
-    duties: [
-      {
-        heading: "Stratejik Yönlendirme & İçerik Kurgusu",
-        body: "Eklemeli imalat ekosistemindeki küresel gelişmeleri, yeni teknolojileri ve trendleri analiz ederek kanalın yayın stratejisini ve içerik yol haritasını kurgular.",
-      },
-      {
-        heading: "Üretim, Dilimleme & Baskı Süreçleri",
-        body: "Projelerin dilimleme (slicing) parametre optimizasyonu, doğru malzeme seçimi ve baskı hazırlıklarını üstlenerek modellerin üretim aşamalarını fiilen yürütür.",
-      },
-      {
-        heading: "Teknik Değerlendirme & Test",
-        body: "Donanım, filament ve sarf malzemelerinin performanslarını objektif mühendislik kriterleriyle test eder; içeriklerde sunulan verilerin doğruluğunu ve pratik uygulanabilirliğini güvenceye alır.",
-      },
-      {
-        heading: "Marka Entegrasyonu & Donanım Çözümleri",
-        body: "Sektörün öncü markalarıyla yürütülen iş birliklerinde, ürünlerin en doğru içerik formatı ve teknik bağlamda izleyiciye aktarılmasını sağlar.",
-      },
+    body: [
+      "Stratejik yönlendirme ve içerik kurgusu: eklemeli imalat ekosistemindeki küresel gelişmeleri, yeni teknolojileri ve trendleri analiz ederek kanalın yayın stratejisini ve içerik yol haritasını kurgular.",
+      "Üretim, dilimleme ve baskı süreçleri: projelerin dilimleme parametre optimizasyonu, doğru malzeme seçimi ve baskı hazırlıklarını üstlenerek modellerin üretim aşamalarını fiilen yürütür.",
+      "Teknik değerlendirme ve test: donanım, filament ve sarf malzemelerinin performanslarını objektif mühendislik kriterleriyle test eder; içeriklerde sunulan verilerin doğruluğunu ve pratik uygulanabilirliğini güvenceye alır.",
+      "Marka entegrasyonu ve donanım çözümleri: sektörün öncü markalarıyla yürütülen iş birliklerinde, ürünlerin en doğru içerik formatı ve teknik bağlamda izleyiciye aktarılmasını sağlar.",
     ],
     techs: ["FDM", "SLA", "Malzeme", "Ar-Ge"],
     socials: [

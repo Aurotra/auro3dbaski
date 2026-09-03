@@ -58,27 +58,18 @@ export default function HakkimdaPage() {
                 />
               </div>
               <p className="font-display text-2xl text-text">{m.name}</p>
-              <div className="mt-2 flex flex-wrap items-center gap-2">
+              <div className="mt-2 flex min-h-8 flex-wrap items-center gap-2">
                 <Badge className="border-accent/40 text-accent-2">{m.title}</Badge>
               </div>
-              {m.role ? (
-                <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
-                  {m.role}
-                </p>
-              ) : null}
+              <p className="mt-2 min-h-10 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
+                {m.role}
+              </p>
               <div className="mt-1">
-                {m.duties
-                  ? m.duties.map((duty) => (
-                      <div key={duty.heading} className="mt-4">
-                        <p className="font-display text-base text-text">{duty.heading}</p>
-                        <p className="mt-1 text-sm text-muted">{duty.body}</p>
-                      </div>
-                    ))
-                  : (m.body ?? []).map((p) => (
-                      <p key={p} className="mt-3 text-sm text-muted">
-                        {p}
-                      </p>
-                    ))}
+                {m.body.map((p) => (
+                  <p key={p} className="mt-3 text-sm text-muted">
+                    {p}
+                  </p>
+                ))}
               </div>
             </div>
             <div className="mt-auto flex flex-col gap-3 pt-6">
