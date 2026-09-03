@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/icerikler",
     "/magaza",
     "/araclar",
-    "/araclar/hesaplayicilar",
     "/bilgi-bankasi",
     "/gunluk",
     "/ozel-uretim",

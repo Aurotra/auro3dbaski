@@ -128,7 +128,6 @@ export const glossary: GlossaryTerm[] = [
     when: "Kapak-gövde, mil-yuvası, mandal, vida dişi, manyetik yuva.",
     bambuSetting: "X-Y hole/contour compensation. Asıl iş test kuponu: 0.1 mm adımlı geçme kulesi.",
     caveats: "Tek bir “sihirli 0.2 mm” yoktur. Malzeme, nozul, duvar ve yön değişince pay değişir. Hesaplayıcıyı kullanın, sonra basıp ölçün.",
-    calculatorHref: "/araclar/hesaplayicilar",
   },
   {
     slug: "katman-yuksekligi",

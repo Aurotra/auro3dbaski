@@ -5,6 +5,7 @@ import { capabilities, timeline, workshopShots } from "@/data/workshop";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SafeImage } from "@/components/media/safe-image";
+import { LoopVideo } from "@/components/media/loop-video";
 
 export const metadata = pageMeta({
   title: "Hakkımızda",
@@ -96,7 +97,7 @@ export default function HakkimdaPage() {
         ))}
       </ul>
 
-      <div className="mt-16 grid items-stretch gap-6 lg:grid-cols-2">
+      <div className="mt-16 grid items-stretch gap-6 lg:grid-cols-3">
         <figure className="flex h-full flex-col overflow-hidden rounded-md border border-white/10 bg-ink-soft">
           <div className="relative min-h-[360px] flex-1">
             <SafeImage
@@ -104,11 +105,24 @@ export default function HakkimdaPage() {
               alt="Bambu Lab yazıcılar, filament rafları ve atölye düzeni"
               fill
               className="object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 1024px) 100vw, 33vw"
             />
           </div>
           <figcaption className="px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-accent">
             Atölye filosu · Bambu Lab
+          </figcaption>
+        </figure>
+        <figure className="flex h-full flex-col overflow-hidden rounded-md border border-white/10 bg-ink-soft">
+          <div className="relative min-h-[360px] flex-1">
+            <LoopVideo
+              src="/videos/atolye.mp4"
+              poster="/images/workshop/filo.webp"
+              className="absolute inset-0"
+              sizes="(max-width: 1024px) 100vw, 33vw"
+            />
+          </div>
+          <figcaption className="px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-accent">
+            Çok renk · rölyef harita
           </figcaption>
         </figure>
         <div className="flex h-full flex-col">

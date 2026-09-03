@@ -65,6 +65,6 @@ async function fetchShopierUncached(): Promise<ShopierCatalog> {
 
 export const getShopierProducts = unstable_cache(
   fetchShopierUncached,
-  ["shopier-products-v2"],
+  ["shopier-products-v3"],
   { revalidate: 3600 },
 );

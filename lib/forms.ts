@@ -21,7 +21,6 @@ export const quoteSchema = z
         return Number.isFinite(n) && n > 0;
       }, "Adet 0’dan büyük olmalı."),
     material: z.string().trim().min(1),
-    deadline: z.string().optional().or(z.literal("")),
     fileUrl: z
       .string()
       .trim()

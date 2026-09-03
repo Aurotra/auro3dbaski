@@ -6,8 +6,6 @@ export type Product = {
   price: string;
   imageUrl: string;
   shopierUrl: string;
-  material?: string;
-  shipping?: string;
   description?: string;
   variants?: string[];
 };
@@ -27,21 +25,6 @@ const IMAGE_OVERRIDES: Record<string, string> = {
     "https://cdn.shopier.app/pictures_large/Auro3dbaski_5afe9eb02c7e6e15da11ae0272cec0ab.png",
 };
 
-const MATERIAL_BY_ID: Record<string, string> = {
-  "41163104": "PETG",
-  "50347929": "PLA+",
-  "49717093": "PLA+",
-  "49717068": "PLA+",
-  "49379931": "PLA+",
-  "49379907": "PLA+",
-  "49379876": "PLA+",
-  "49379845": "PLA+",
-  "41369888": "PETG",
-  "41369851": "PETG",
-};
-
-const DEFAULT_SHIPPING = "1-2 İş Günü";
-
 const SARDALYA_VARIANTS = [
   "Metalik",
   "Mor",
@@ -56,8 +39,8 @@ const KIZILAY_VARIANTS = ["Tabela", "Anahtarlık", "Magnet"];
 const DESCRIPTION_BY_ID: Record<string, string> = {
   "41163104": "Kızılay meydanı tabelası — masaüstü ölçek.",
   "50347929": "GTA VI kapak diski. Duvar / raf dekoru.",
-  "49717093": "Sardalya kutu formunda takı kutusu. Metalik PLA+.",
-  "49717068": "Sardalya kutu formunda takı kutusu. Mor PLA+.",
+  "49717093": "Sardalya kutu formunda takı kutusu. Metalik.",
+  "49717068": "Sardalya kutu formunda takı kutusu. Mor.",
   "49379931": "Sardalya kutu formunda takı kutusu. Krem ve soft pembe.",
   "49379907": "Sardalya kutu formunda takı kutusu. Krem ve pembe.",
   "49379876": "Sardalya kutu formunda takı kutusu. Mavi.",
@@ -93,8 +76,6 @@ export function decorateProduct(product: Product): Product {
       LOCAL_IMAGES[product.id] ??
       IMAGE_OVERRIDES[product.id] ??
       product.imageUrl,
-    material: product.material ?? MATERIAL_BY_ID[product.id],
-    shipping: product.shipping ?? DEFAULT_SHIPPING,
     description: product.description ?? DESCRIPTION_BY_ID[product.id],
     variants: product.variants ?? VARIANTS_BY_ID[product.id],
   };

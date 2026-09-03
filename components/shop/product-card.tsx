@@ -24,13 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
           <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-accent" />
         </div>
         <div className="flex flex-1 flex-col p-4">
-          {product.material || product.shipping ? (
-            <div className="flex flex-wrap gap-2">
-              {product.material ? <Badge>{product.material}</Badge> : null}
-              {product.shipping ? <Badge>{product.shipping}</Badge> : null}
-            </div>
-          ) : null}
-          <h2 className="mt-3 font-display text-xl leading-snug text-text">{product.title}</h2>
+          <h2 className="font-display text-xl leading-snug text-text">{product.title}</h2>
           {product.description ? (
             <p className="mt-2 line-clamp-2 text-sm text-muted">{product.description}</p>
           ) : null}

@@ -79,15 +79,9 @@ export default async function TermPage({
         >
           İlgili Video
         </a>
-        {term.calculatorHref ? (
-          <Link href={term.calculatorHref} className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
-            Hesaplayıcı
+        <Link href="/araclar" className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
+            Araçlar
           </Link>
-        ) : (
-          <Link href="/araclar" className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-2">
-            Hesaplayıcılar
-          </Link>
-        )}
       </div>
     </article>
   );

@@ -35,7 +35,6 @@ export function QuoteForm() {
       phone: "",
       qty: "1",
       material: productionMaterials[0]?.name ?? "PLA",
-      deadline: "",
       fileUrl: "",
       note: "",
     },
@@ -65,7 +64,6 @@ export function QuoteForm() {
           values.phone ? `Telefon: ${values.phone}` : "",
           `Adet: ${values.qty}`,
           `Malzeme: ${values.material}`,
-          values.deadline ? `Teslim: ${values.deadline}` : "",
           url ? `Dosya: ${url}` : "",
           values.note ? `Not: ${values.note}` : "",
         ]);
@@ -80,7 +78,6 @@ export function QuoteForm() {
       if (values.phone) body.set("phone", values.phone);
       body.set("qty", values.qty);
       body.set("material", values.material);
-      if (values.deadline) body.set("deadline", values.deadline);
       if (url) body.set("fileUrl", url);
       if (values.note) body.set("note", values.note);
       if (file) body.set("file", file);
@@ -174,14 +171,6 @@ export function QuoteForm() {
             <option key={m.id}>{m.name}</option>
           ))}
         </select>
-      </label>
-      <label className="grid gap-1 text-sm text-muted">
-        Teslim tarihi
-        <input
-          {...register("deadline")}
-          type="date"
-          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
-        />
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Model dosyası
