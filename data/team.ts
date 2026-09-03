@@ -47,7 +47,7 @@ export const team: TeamMember[] = [
     id: "berk",
     name: "Berk Tepe",
     title: "Kurucu & Teknik Koordinatör",
-    photoUrl: "/images/team/berk-tepe.webp",
+    photoUrl: "/images/team/berk-close.webp",
     photoAlt: "Berk Tepe — kurucu ve teknik koordinatör",
     duties: [
       {

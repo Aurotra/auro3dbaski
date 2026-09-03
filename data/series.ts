@@ -22,7 +22,6 @@ export const series: Series[] = [
     slug: "makerworld-101",
     title: "MakerWorld 101",
     summary: "Modelleri indirmeden önce bakılacak yerler.",
-    coverUrl: "/images/series/makerworld.webp",
     episodes: [],
   },
   {
