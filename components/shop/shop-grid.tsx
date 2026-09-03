@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/shop/product-card";
-import { products, shopierStoreUrl } from "@/data/products";
+import { shopierStoreUrl, type Product } from "@/data/products";
 
-export function ShopGrid() {
+export function ShopGrid({ products }: { products: Product[] }) {
   if (products.length === 0) {
     return (
       <p className="rounded-md border border-white/10 bg-ink-soft p-5 text-sm text-muted">
@@ -31,7 +31,7 @@ export function ShopGrid() {
         rel="noopener noreferrer"
         className="mt-8 inline-flex font-mono text-sm text-accent-2 hover:text-accent"
       >
-        Tüm ürünleri Shopier’de gör →
+        Shopier mağazasını aç →
       </a>
     </>
   );

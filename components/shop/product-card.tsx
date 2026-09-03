@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { type Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
+  const remote = product.imageUrl.startsWith("http");
+
   return (
     <li>
       <article className="group flex h-full flex-col overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-colors hover:border-accent/40">
@@ -11,6 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
             src={product.imageUrl}
             alt={product.title}
             fill
+            unoptimized={remote}
             className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.04]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
@@ -21,10 +24,12 @@ export function ProductCard({ product }: { product: Product }) {
           <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-accent" />
         </div>
         <div className="flex flex-1 flex-col p-4">
-          <div className="flex flex-wrap gap-2">
-            <Badge>{product.material}</Badge>
-            <Badge>{product.shipping}</Badge>
-          </div>
+          {product.material || product.shipping ? (
+            <div className="flex flex-wrap gap-2">
+              {product.material ? <Badge>{product.material}</Badge> : null}
+              {product.shipping ? <Badge>{product.shipping}</Badge> : null}
+            </div>
+          ) : null}
           <h2 className="mt-3 font-display text-xl leading-snug text-text">{product.title}</h2>
           <p className="mt-2 font-mono text-lg tabular-nums text-accent-2">{product.price}</p>
           <a

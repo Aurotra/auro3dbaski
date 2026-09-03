@@ -1,7 +1,10 @@
 import { ShopGrid } from "@/components/shop/shop-grid";
-import { products, shopierStoreUrl } from "@/data/products";
+import { shopierStoreUrl } from "@/data/products";
 import { pageMeta } from "@/lib/seo";
+import { getShopierProducts } from "@/lib/shopier";
 import { site } from "@/lib/site";
+
+export const revalidate = 3600;
 
 export const metadata = pageMeta({
   title: "Mağaza",
@@ -10,13 +13,14 @@ export const metadata = pageMeta({
   path: "/magaza",
 });
 
-export default function MagazaPage() {
+export default async function MagazaPage() {
+  const catalog = await getShopierProducts();
   const listing = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `${site.name} mağaza`,
-    numberOfItems: products.length,
-    itemListElement: products.map((p, i) => ({
+    numberOfItems: catalog.products.length,
+    itemListElement: catalog.products.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: p.shopierUrl,
@@ -37,11 +41,10 @@ export default function MagazaPage() {
         Mağaza
       </h1>
       <p className="mt-4 max-w-2xl text-muted">
-        Atölyeden çıkan parçalar. Stok ve ödeme Shopier’de; kartlar buradan, her
-        seferinde aynı listeden açılır.
+        Shopier’de listelenen tüm parçalar. Stok ve ödeme Shopier’de tamamlanır.
       </p>
       <div className="mt-10">
-        <ShopGrid />
+        <ShopGrid products={catalog.products} />
       </div>
       <p className="mt-10 text-sm text-muted">
         Özel parça için{" "}

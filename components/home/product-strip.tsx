@@ -1,9 +1,9 @@
 import { ProductCard } from "@/components/shop/product-card";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { products, shopierStoreUrl } from "@/data/products";
+import { shopierStoreUrl, type Product } from "@/data/products";
 
-export function ProductStrip() {
+export function ProductStrip({ products }: { products: Product[] }) {
   return (
     <section className="bg-ink px-4 py-16">
       <div className="mx-auto max-w-6xl">
