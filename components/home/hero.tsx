@@ -25,8 +25,8 @@ export function Hero() {
         <p className="mt-6 max-w-xl text-lg text-muted">{site.subtitle}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href="/icerikler">İçerikleri İzle</Button>
-          <Button href="/ozel-uretim" variant="outline">
-            Özel Üretim
+          <Button href="/ozel-uretim#form" variant="outline">
+            Teklif Al
           </Button>
         </div>
         <p className="mt-12 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">

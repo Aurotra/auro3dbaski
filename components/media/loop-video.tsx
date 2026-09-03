@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/media/safe-image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
@@ -54,7 +54,7 @@ export function LoopVideo({
 
   return (
     <div className={cn("overflow-hidden", className)}>
-      <Image
+      <SafeImage
         src={poster}
         alt=""
         fill

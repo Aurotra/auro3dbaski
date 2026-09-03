@@ -20,6 +20,17 @@ export function parseLocaleNumber(raw: string): number {
   return Number.isFinite(n) ? n : Number.NaN;
 }
 
+/** Hesaplayıcı çıktısı: NaN/Infinity → 0. */
+export function finiteOrZero(value: number): number {
+  return Number.isFinite(value) ? value : 0;
+}
+
+export function formatTry(value: number): string {
+  return finiteOrZero(value).toLocaleString("tr-TR", {
+    maximumFractionDigits: 2,
+  });
+}
+
 export function NumberField({
   label,
   value,

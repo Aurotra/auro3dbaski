@@ -8,6 +8,8 @@ export type Product = {
   shopierUrl: string;
   material?: string;
   shipping?: string;
+  description?: string;
+  variants?: string[];
 };
 
 const LOCAL_IMAGES: Record<string, string> = {
@@ -40,6 +42,50 @@ const MATERIAL_BY_ID: Record<string, string> = {
 
 const DEFAULT_SHIPPING = "1-2 İş Günü";
 
+const SARDALYA_VARIANTS = [
+  "Metalik",
+  "Mor",
+  "Krem & Soft Pembe",
+  "Krem & Pembe",
+  "Mavi",
+  "Pembe",
+];
+
+const KIZILAY_VARIANTS = ["Tabela", "Anahtarlık", "Magnet"];
+
+const DESCRIPTION_BY_ID: Record<string, string> = {
+  "41163104": "Kızılay meydanı tabelası — masaüstü ölçek.",
+  "50347929": "GTA VI kapak diski. Duvar / raf dekoru.",
+  "49717093": "Sardalya kutu formunda takı kutusu. Metalik PLA+.",
+  "49717068": "Sardalya kutu formunda takı kutusu. Mor PLA+.",
+  "49379931": "Sardalya kutu formunda takı kutusu. Krem ve soft pembe.",
+  "49379907": "Sardalya kutu formunda takı kutusu. Krem ve pembe.",
+  "49379876": "Sardalya kutu formunda takı kutusu. Mavi.",
+  "49379845": "Sardalya kutu formunda takı kutusu. Pembe.",
+  "48304917": "Chameleon figür — altı poz.",
+  "48020449": "Nissan Skyline RB26 kesit motor. Vitrin modeli.",
+  "47251112": "Kart okuyucu / ödeme asası formu.",
+  "44278985": "Saat standı. Masaüstü düzen.",
+  "43560642": "Anı Müzesi eki: çerçeve, figür, eser seti.",
+  "43559813": "Kişiye özel Anı Müzesi — 3D çerçeve.",
+  "42365663": "Yılbaşı temalı Stitch figürü.",
+  "42129542": "LUMİRA ambiyans ışığı. Atölye lambası.",
+  "41369888": "Kızılay tabelası anahtarlık ölçeği.",
+  "41369851": "Kızılay tabelası magnet.",
+};
+
+const VARIANTS_BY_ID: Record<string, string[]> = {
+  "41163104": KIZILAY_VARIANTS,
+  "41369888": KIZILAY_VARIANTS,
+  "41369851": KIZILAY_VARIANTS,
+  "49717093": SARDALYA_VARIANTS,
+  "49717068": SARDALYA_VARIANTS,
+  "49379931": SARDALYA_VARIANTS,
+  "49379907": SARDALYA_VARIANTS,
+  "49379876": SARDALYA_VARIANTS,
+  "49379845": SARDALYA_VARIANTS,
+};
+
 export function decorateProduct(product: Product): Product {
   return {
     ...product,
@@ -49,6 +95,8 @@ export function decorateProduct(product: Product): Product {
       product.imageUrl,
     material: product.material ?? MATERIAL_BY_ID[product.id],
     shipping: product.shipping ?? DEFAULT_SHIPPING,
+    description: product.description ?? DESCRIPTION_BY_ID[product.id],
+    variants: product.variants ?? VARIANTS_BY_ID[product.id],
   };
 }
 

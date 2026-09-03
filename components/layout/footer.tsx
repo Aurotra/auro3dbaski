@@ -11,6 +11,7 @@ const footerNav = [
   { href: "/isbirlikleri", label: "İşbirlikleri" },
   { href: "/hakkimda", label: "Hakkımızda" },
   { href: "/iletisim", label: "İletişim" },
+  { href: "/gunluk", label: "Günlük" },
 ];
 
 export function SiteFooter() {

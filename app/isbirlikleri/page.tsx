@@ -54,6 +54,11 @@ export default function Page() {
       </ul>
       <div className="mt-10 flex flex-wrap gap-3">
         <Button href="/iletisim">İletişime geç</Button>
+        {mediaKit.pdfUrl ? (
+          <Button href={mediaKit.pdfUrl} variant="outline">
+            Medya kiti (PDF)
+          </Button>
+        ) : null}
         <Button href={site.youtube} variant="outline">
           YouTube
         </Button>
@@ -64,12 +69,21 @@ export default function Page() {
           TikTok
         </Button>
       </div>
-      <p className="mt-6 text-sm text-muted">
-        Medya kiti PDF’si henüz yayınlanmadı. Brief için{" "}
-        <Link href="/iletisim" className="text-accent-2">
-          iletişim formu
-        </Link>{" "}
-        veya {site.email}.
+      <p id="medya-kiti" className="mt-6 text-sm text-muted">
+        {mediaKit.pdfUrl ? (
+          <a href={mediaKit.pdfUrl} className="text-accent-2">
+            Medya kiti PDF
+          </a>
+        ) : (
+          <>
+            Medya kiti PDF’si henüz yayınlanmadı. Hazır olunca bu bloktan
+            indirilecek. Brief için{" "}
+            <Link href="/iletisim" className="text-accent-2">
+              iletişim formu
+            </Link>{" "}
+            veya {site.email}.
+          </>
+        )}
       </p>
     </div>
   );

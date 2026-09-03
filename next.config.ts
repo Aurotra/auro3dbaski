@@ -4,6 +4,9 @@ import path from "path";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  trailingSlash: false,
+  // Alt rotalar App Router ile üretilir; slash varyantı kanonik yola gider.
+  skipTrailingSlashRedirect: false,
   // `auro3dmap/` alt klasörü kendi package-lock.json'ına sahip ayrı bir
   // proje (Vercel'de bağımsız deploy edilir) — Next'in yanlışlıkla üst
   // dizinde bir workspace root'u algılamasını önlemek için sabitliyoruz.
@@ -41,7 +44,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/posters/:path*",
+        source: "/images/:path*",
         headers: [
           {
             key: "Cache-Control",

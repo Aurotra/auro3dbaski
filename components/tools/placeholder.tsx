@@ -17,7 +17,6 @@ export function ToolPlaceholder({
       <p className="mt-4 text-sm text-muted">
         Çıktı STL olarak indirilecek; ilgili video ve baskı notu buraya gelecek.
       </p>
-      <p className="mt-2 text-sm text-muted">TODO: ilgili video linki</p>
       <Link href="/araclar" className="mt-8 inline-block text-accent-2">
         Tüm araçlar
       </Link>

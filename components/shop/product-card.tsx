@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { SafeImage } from "@/components/media/safe-image";
 import { type Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -9,7 +9,7 @@ export function ProductCard({ product }: { product: Product }) {
     <li>
       <article className="group flex h-full flex-col overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-colors hover:border-accent/40">
         <div className="relative aspect-square overflow-hidden bg-ink">
-          <Image
+          <SafeImage
             src={product.imageUrl}
             alt={product.title}
             fill
@@ -31,12 +31,22 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
           ) : null}
           <h2 className="mt-3 font-display text-xl leading-snug text-text">{product.title}</h2>
+          {product.description ? (
+            <p className="mt-2 line-clamp-2 text-sm text-muted">{product.description}</p>
+          ) : null}
+          {product.variants && product.variants.length > 0 ? (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {product.variants.map((v) => (
+                <Badge key={v}>{v}</Badge>
+              ))}
+            </div>
+          ) : null}
           <p className="mt-2 font-mono text-lg tabular-nums text-accent-2">{product.price}</p>
           <a
             href={product.shopierUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-glow mt-5 inline-flex w-full items-center justify-center rounded-md px-3 py-2.5 text-center font-display text-sm font-semibold hover:brightness-110"
+            className="btn-glow mt-auto inline-flex w-full items-center justify-center rounded-md px-3 py-2.5 text-center font-display text-sm font-semibold hover:brightness-110"
           >
             Shopier ile Güvenle Satın Al
           </a>

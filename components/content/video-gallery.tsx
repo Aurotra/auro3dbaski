@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { InstagramVitrine } from "@/components/home/instagram-vitrine";
 import { series } from "@/data/series";
 import { type InstagramVideo } from "@/lib/instagram";
-import { site } from "@/lib/site";
 
 export function VideoGallery({ videos }: { videos: InstagramVideo[] }) {
   return (
@@ -48,19 +48,7 @@ export function VideoGallery({ videos }: { videos: InstagramVideo[] }) {
           ))}
         </ul>
       ) : (
-        <p className="text-muted">
-          Videolar Instagram’dan sıralanıyor. Token yoksa veya Instagram duvar
-          çıkarırsa{" "}
-          <a
-            href={site.instagram}
-            className="text-accent-2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @auro3dbaski
-          </a>{" "}
-          üzerinden izleyin.
-        </p>
+        <InstagramVitrine />
       )}
       <p className="mt-6 text-sm text-muted">
         Seri sayfaları:{" "}

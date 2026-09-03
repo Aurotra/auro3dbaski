@@ -37,6 +37,7 @@ export const nav = [
   { href: "/araclar", label: "Araçlar" },
   { href: "/bilgi-bankasi", label: "Bilgi Bankası" },
   { href: "/ozel-uretim", label: "Özel Üretim" },
+  { href: "/isbirlikleri", label: "İşbirlikleri" },
   { href: "/hakkimda", label: "Hakkımızda" },
   { href: "/iletisim", label: "İletişim" },
 ] as const;

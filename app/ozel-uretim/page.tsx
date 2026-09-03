@@ -37,7 +37,7 @@ export default function Page() {
           />
           <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent px-4 pb-4 pt-10">
             <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">
-              Çok renk · kafes geometri
+              Çok renk · rölyef harita
             </span>
           </figcaption>
         </figure>

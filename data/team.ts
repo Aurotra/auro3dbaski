@@ -1,18 +1,28 @@
+import { site } from "@/lib/site";
+
+export type TeamSocial = {
+  label: string;
+  href: string;
+};
+
 export type TeamMember = {
   id: "sude" | "berk";
   name: string;
+  title: string;
   role: string;
   photoUrl: string;
   photoAlt: string;
   body: string[];
-  tags?: string[];
+  techs: string[];
+  socials: TeamSocial[];
 };
 
 export const team: TeamMember[] = [
   {
     id: "sude",
     name: "Sude Can Sümer",
-    role: "Mekanik tasarım · içerik üretimi · marka iletişimi",
+    title: "Mekanik Tasarım",
+    role: "İçerik üretimi · marka iletişimi",
     photoUrl: "/images/team/sude.webp",
     photoAlt: "Sude Can Sümer — mekanik tasarım, içerik üretimi ve marka iletişimi",
     body: [
@@ -21,11 +31,16 @@ export const team: TeamMember[] = [
       "Teknik derinliği koruyarak eklemeli imalat konularını popüler bir dile taşıyor; ürettiği içerikler hem sektör profesyonellerine hem yeni başlayanlara hitap ediyor.",
       "Üretim süreçlerinde estetik ve işlevselliğin dengesini kurarak kanalın yaratıcı projelerinin hayata geçirilmesinde aktif rol alıyor.",
     ],
-    tags: ["CAD", "DfAM", "Simülasyon"],
+    techs: ["FDM", "SLA", "CAD", "DfAM"],
+    socials: [
+      { label: "Instagram", href: site.instagram },
+      { label: "TikTok", href: site.tiktok },
+    ],
   },
   {
     id: "berk",
     name: "Berk Tepe",
+    title: "Kurucu",
     role: "Ar-Ge · eklemeli imalat · içerik stratejisi",
     photoUrl: "/images/team/berk.webp",
     photoAlt: "Berk Tepe — Ar-Ge, eklemeli imalat ve tersine mühendislik",
@@ -34,7 +49,11 @@ export const team: TeamMember[] = [
       "Farklı FDM ve SLA yazıcıların kalibrasyonu üzerine içerik stratejilerini yönetiyor.",
       "Endüstriyel filamentlerin dayanım testleri ve donanım iyileştirmeleri de aynı stratejinin parçası.",
     ],
-    tags: ["Eklemeli İmalat", "Ar-Ge & Malzeme", "Tersine Mühendislik"],
+    techs: ["FDM", "SLA", "Malzeme", "Ar-Ge"],
+    socials: [
+      { label: "YouTube", href: site.youtube },
+      { label: "Instagram", href: site.instagram },
+    ],
   },
 ];
 

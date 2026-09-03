@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { NumberField, parseLocaleNumber } from "@/components/calculators/number-field";
+import { NumberField, formatTry, parseLocaleNumber } from "@/components/calculators/number-field";
 import { MeasureLabel } from "@/components/ui/measure-label";
 
 function n(raw: string): number {
@@ -70,5 +70,5 @@ function Row({ label, value }: { label: string; value: number }) {
 }
 
 function fmt(n: number) {
-  return n.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+  return formatTry(n);
 }

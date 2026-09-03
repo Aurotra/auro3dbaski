@@ -1,3 +1,6 @@
+import { formatGroupedPlus } from "@/lib/format";
+import { stats } from "@/data/workshop";
+
 export type ProofPair = {
   id: string;
   title: string;
@@ -125,6 +128,9 @@ export type Partner = {
 
 export const partners: Partner[] = [];
 
+const followersStat = stats.find((s) => s.id === "followers")?.value ?? 7_000;
+const viewsStat = stats.find((s) => s.id === "views")?.value ?? 3_000_000;
+
 export const mediaKit = {
   channel: "Auro 3D Baskı",
   audience:
@@ -132,6 +138,8 @@ export const mediaKit = {
   demo: "%82 erkek / %18 kadın; en yoğun yaş aralığı 18–34 (%68). Ağırlıklı kitle: Türkiye, Almanya, Azerbaycan.",
   avgViews:
     "Short / Reels başına 10.000–25.000 görüntülenme; öne çıkan rehber içeriklerde 500.000+ izlenme.",
-  followers: "7.000+",
-  reach: "3.000.000+ toplam izlenme",
+  followers: formatGroupedPlus(followersStat),
+  reach: `${formatGroupedPlus(viewsStat)} toplam izlenme`,
+  /** PDF hazır olunca örn. "/docs/auro3dbaski-medya-kiti.pdf" */
+  pdfUrl: null as string | null,
 };

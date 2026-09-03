@@ -1,68 +1,175 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { productionMaterials } from "@/data/content";
-import { formspreeAction } from "@/lib/site";
-import { FormUnavailable, useFormspreeReady } from "@/components/forms/form-unavailable";
+import { formspreeAction, site } from "@/lib/site";
+import {
+  FILE_ACCEPT,
+  MAX_FILE_BYTES,
+  composeMailto,
+  quoteSchema,
+  type QuoteValues,
+} from "@/lib/forms";
+import { FormDirectCtas, useFormspreeReady } from "@/components/forms/form-unavailable";
+import { useToast } from "@/components/ui/toaster";
 
-const MAX_FILE_BYTES = 25 * 1024 * 1024;
-const FILE_ACCEPT = ".step,.stp,.stl,.3mf";
 const FILE_HINT =
   "Desteklenen formatlar: .STEP, .STP, .STL, .3MF (Maksimum 25MB veya Drive/WeTransfer bağlantısı).";
 
 export function QuoteForm() {
   const ready = useFormspreeReady();
-  const [error, setError] = useState<string | null>(null);
+  const { push } = useToast();
+  const [sending, setSending] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<QuoteValues>({
+    resolver: zodResolver(quoteSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      qty: "1",
+      material: productionMaterials[0]?.name ?? "PLA",
+      deadline: "",
+      fileUrl: "",
+      note: "",
+    },
+  });
 
-  if (!ready) return <FormUnavailable />;
-
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    const form = event.currentTarget;
-    const fileInput = form.elements.namedItem("file") as HTMLInputElement | null;
-    const urlInput = form.elements.namedItem("fileUrl") as HTMLInputElement | null;
+  async function onSubmit(values: QuoteValues, event?: React.BaseSyntheticEvent) {
+    const form = event?.target as HTMLFormElement | undefined;
+    const fileInput = form?.elements.namedItem("file") as HTMLInputElement | null;
     const file = fileInput?.files?.[0];
-    const url = urlInput?.value.trim() ?? "";
+    const url = values.fileUrl?.trim() ?? "";
 
     if (file && file.size > MAX_FILE_BYTES) {
-      event.preventDefault();
-      setError("Dosya 25MB sınırını aşıyor. Drive veya WeTransfer bağlantısı kullanın.");
+      push("Dosya 25MB sınırını aşıyor. Drive veya WeTransfer kullanın.", "err");
+      return;
+    }
+    if (!file && !url) {
+      push(FILE_HINT, "err");
       return;
     }
 
-    if (!file && !url) {
-      event.preventDefault();
-      setError(FILE_HINT);
+    setSending(true);
+    try {
+      if (!ready) {
+        window.location.href = composeMailto(site.email, "Auro3DBaskı özel üretim teklifi", [
+          `Ad: ${values.name}`,
+          `E-posta: ${values.email}`,
+          values.phone ? `Telefon: ${values.phone}` : "",
+          `Adet: ${values.qty}`,
+          `Malzeme: ${values.material}`,
+          values.deadline ? `Teslim: ${values.deadline}` : "",
+          url ? `Dosya: ${url}` : "",
+          values.note ? `Not: ${values.note}` : "",
+        ]);
+        push("E-posta uygulamanız açılıyor.");
+        return;
+      }
+
+      const body = new FormData();
+      body.set("_subject", "Auro3DBaskı özel üretim teklifi");
+      body.set("name", values.name);
+      body.set("email", values.email);
+      if (values.phone) body.set("phone", values.phone);
+      body.set("qty", values.qty);
+      body.set("material", values.material);
+      if (values.deadline) body.set("deadline", values.deadline);
+      if (url) body.set("fileUrl", url);
+      if (values.note) body.set("note", values.note);
+      if (file) body.set("file", file);
+
+      const res = await fetch(formspreeAction(), {
+        method: "POST",
+        body,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error("send");
+      reset();
+      if (fileInput) fileInput.value = "";
+      push("Teklif alındı. En kısa sürede dönüş yaparız.");
+    } catch {
+      push("Gönderilemedi. Doğrudan e-posta ile yazın.", "err");
+    } finally {
+      setSending(false);
     }
   }
 
   return (
     <form
-      action={formspreeAction()}
-      method="POST"
-      encType="multipart/form-data"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="grid gap-4 rounded-md border border-white/10 bg-ink-soft p-5"
+      noValidate
     >
-      <input type="hidden" name="_subject" value="Auro3DBaskı özel üretim teklifi" />
+      {!ready ? (
+        <div className="grid gap-3">
+          <p className="text-sm text-muted">
+            Form altyapısı kapalı. Alanları doldurup gönderebilir veya doğrudan
+            e-posta / Instagram’dan yazabilirsiniz.
+          </p>
+          <FormDirectCtas subject="Auro3DBaskı özel üretim teklifi" />
+        </div>
+      ) : null}
       <label className="grid gap-1 text-sm text-muted">
         Ad
-        <input required name="name" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <input
+          {...register("name")}
+          autoComplete="name"
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
+        {errors.name ? (
+          <span role="alert" className="text-xs text-accent-2">
+            {errors.name.message}
+          </span>
+        ) : null}
       </label>
       <label className="grid gap-1 text-sm text-muted">
         E-posta
-        <input required type="email" name="email" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <input
+          {...register("email")}
+          type="email"
+          autoComplete="email"
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
+        {errors.email ? (
+          <span role="alert" className="text-xs text-accent-2">
+            {errors.email.message}
+          </span>
+        ) : null}
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Telefon
-        <input name="phone" type="tel" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <input
+          {...register("phone")}
+          type="tel"
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Adet
-        <input required name="qty" inputMode="numeric" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <input
+          {...register("qty")}
+          inputMode="numeric"
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
+        {errors.qty ? (
+          <span role="alert" className="text-xs text-accent-2">
+            {errors.qty.message}
+          </span>
+        ) : null}
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Malzeme
-        <select name="material" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text">
+        <select
+          {...register("material")}
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        >
           {productionMaterials.map((m) => (
             <option key={m.id}>{m.name}</option>
           ))}
@@ -70,7 +177,11 @@ export function QuoteForm() {
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Teslim tarihi
-        <input name="deadline" type="date" className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <input
+          {...register("deadline")}
+          type="date"
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
       </label>
       <label className="grid gap-1 text-sm text-muted">
         Model dosyası
@@ -85,26 +196,37 @@ export function QuoteForm() {
       <label className="grid gap-1 text-sm text-muted">
         Drive / WeTransfer bağlantısı
         <input
-          name="fileUrl"
+          {...register("fileUrl")}
           type="url"
           placeholder="https://"
           className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
         />
+        {errors.fileUrl ? (
+          <span role="alert" className="text-xs text-accent-2">
+            {errors.fileUrl.message}
+          </span>
+        ) : null}
       </label>
-      {error ? (
-        <p role="alert" className="text-sm text-accent-2">
-          {error}
-        </p>
-      ) : null}
       <label className="grid gap-1 text-sm text-muted">
         Not
-        <textarea name="note" rows={4} className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text" />
+        <textarea
+          {...register("note")}
+          rows={4}
+          className="rounded-md border border-white/15 bg-ink px-3 py-2 text-text"
+        />
       </label>
       <button
         type="submit"
-        className="btn-glow w-fit rounded-md px-4 py-2.5 font-display text-sm font-semibold hover:brightness-110"
+        disabled={sending}
+        className="btn-glow inline-flex w-fit items-center gap-2 rounded-md px-4 py-2.5 font-display text-sm font-semibold hover:brightness-110 disabled:opacity-60"
       >
-        Teklif iste
+        {sending ? (
+          <span
+            className="size-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
+            aria-hidden
+          />
+        ) : null}
+        {sending ? "Gönderiliyor" : "Teklif iste"}
       </button>
     </form>
   );

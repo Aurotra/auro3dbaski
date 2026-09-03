@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { NumberField, parseLocaleNumber } from "@/components/calculators/number-field";
+import { NumberField, formatTry, parseLocaleNumber } from "@/components/calculators/number-field";
 import { MeasureLabel } from "@/components/ui/measure-label";
 
 /** Konut tarifesi varsayılanı — elektrik çıktısı için. */
@@ -82,5 +82,5 @@ function Row({ label, value }: { label: string; value: number }) {
 }
 
 function fmt(n: number) {
-  return n.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+  return formatTry(n);
 }

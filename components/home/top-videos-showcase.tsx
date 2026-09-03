@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { type InstagramVideo, instagramProfileEmbedUrl } from "@/lib/instagram";
+import { InstagramVitrine } from "@/components/home/instagram-vitrine";
+import { type InstagramVideo } from "@/lib/instagram";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
@@ -139,20 +140,6 @@ function InstagramPlayer({
   );
 }
 
-function InstagramProfileEmbed() {
-  return (
-    <div className="mx-auto w-full max-w-[540px] overflow-hidden rounded-md border border-white/10 bg-ink-soft">
-      <iframe
-        title={`${site.channelName} Instagram`}
-        src={instagramProfileEmbedUrl(site.instagram)}
-        className="h-[680px] w-full border-0"
-        loading="lazy"
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-      />
-    </div>
-  );
-}
-
 export function TopVideosShowcase({ videos }: { videos: InstagramVideo[] }) {
   return (
     <section className="bg-ink px-4 py-16">
@@ -161,21 +148,24 @@ export function TopVideosShowcase({ videos }: { videos: InstagramVideo[] }) {
           En Çok İzlenenler
         </p>
         <p className="mb-6 max-w-xl text-sm text-muted">
-          Instagram Reels. Sıralama izlenme sayısına göre; çekilemezse profil vitrini açılır.
+          Instagram Reels. Sıralama izlenme sayısına göre. Çekilemezse atölye
+          vitrini açılır — her kart Instagram’a gider.
         </p>
         {videos.length > 0 ? (
-          <InstagramPlayer videos={videos} />
+          <>
+            <InstagramPlayer videos={videos} />
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex font-mono text-sm text-accent-2"
+            >
+              Tümünü Instagram’da izle →
+            </a>
+          </>
         ) : (
-          <InstagramProfileEmbed />
+          <InstagramVitrine />
         )}
-        <a
-          href={site.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex font-mono text-sm text-accent-2"
-        >
-          Tümünü Instagram’da izle →
-        </a>
       </div>
     </section>
   );

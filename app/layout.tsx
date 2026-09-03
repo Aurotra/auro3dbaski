@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/layout/footer";
 import { SiteHeader } from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster";
 import { ogImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -85,9 +86,11 @@ export default function RootLayout({
           İçeriğe geç
         </a>
         <SiteHeader />
-        <main id="icerik" className="flex-1">
-          {children}
-        </main>
+        <Toaster>
+          <main id="icerik" className="flex-1">
+            {children}
+          </main>
+        </Toaster>
         <SiteFooter />
         <Analytics />
         <SpeedInsights />

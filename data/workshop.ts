@@ -3,40 +3,65 @@ export type Stat = {
   label: string;
   value: number;
   suffix: string;
+  format: "compact" | "grouped";
 };
 
 export const stats: Stat[] = [
-  { id: "views", label: "Toplam izlenme", value: 3_000_000, suffix: "+" },
+  {
+    id: "followers",
+    label: "Toplam takipçi",
+    value: 7_000,
+    suffix: "+",
+    format: "grouped",
+  },
+  {
+    id: "views",
+    label: "Toplam izlenme",
+    value: 3_000_000,
+    suffix: "+",
+    format: "compact",
+  },
   {
     id: "parts",
     label: "Test edilen / üretilen parça",
-    value: 1_200,
+    value: 500,
     suffix: "+",
+    format: "grouped",
   },
-  { id: "printers", label: "Aktif yazıcı", value: 8, suffix: "+" },
+  {
+    id: "printers",
+    label: "Atölye filosu",
+    value: 6,
+    suffix: "+",
+    format: "grouped",
+  },
 ];
 
-export type Equipment = {
+export type Capability = {
   id: string;
   name: string;
   use: string;
+  tags: string[];
 };
 
-export const equipment: Equipment[] = [
+export const capabilities: Capability[] = [
   {
-    id: "flashforge",
-    name: "Flashforge",
-    use: "Yüksek tekrarlanabilirlikli FDM üretim ve seri imalat süreçleri.",
+    id: "ekosistem",
+    name: "Bambu Lab & Elegoo",
+    use: "FDM ve SLA aynı atölyede: prototip, kısa seri, reçine detay.",
+    tags: ["FDM", "SLA"],
   },
   {
-    id: "bambu",
-    name: "Bambu Lab",
-    use: "Hızlı prototipleme, ileri mühendislik filamentleri (PA-CF, ASA, PC) ve dayanım testleri.",
+    id: "dilimleme",
+    name: "Teknik dilimleme",
+    use: "Profil, destek, yönelim ve malzeme — Bambu Studio’da tahminsiz.",
+    tags: ["Bambu Studio", "Profil"],
   },
   {
-    id: "elegoo",
-    name: "Elegoo",
-    use: "Yüksek çözünürlüklü SLA reçine modelleri ve geniş hacimli FDM baskılar.",
+    id: "proto",
+    name: "Prototipleme",
+    use: "DfAM, geçme testi ve dayanım denemesi. Sayı değil, süreç.",
+    tags: ["DfAM", "Fit"],
   },
 ];
 
@@ -76,6 +101,18 @@ export const workshopShots = [
     src: "/images/workshop/miras-kutu.webp",
     alt: "Anı Müzesi — turuncu gölge kutusu, minyatür çerçeveler ve figürinler",
     caption: "Anı Müzesi",
+  },
+  {
+    id: "keman-parca",
+    src: "/images/workshop/keman-parca.webp",
+    alt: "3D baskı keman gövde, sap ve köprü parçaları kesim matı üzerinde",
+    caption: "Montaj",
+  },
+  {
+    id: "prototip",
+    src: "/images/workshop/prototip.webp",
+    alt: "Cıvata, conta ve kumpasla ölçü kontrolü yapılan prototip yığın",
+    caption: "Prototip",
   },
 ] as const;
 

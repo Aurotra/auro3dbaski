@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/media/safe-image";
 import { useState } from "react";
 import { type JournalEntry, journal } from "@/data/gunluk";
 
@@ -17,7 +17,7 @@ export function JournalWall() {
               className="w-full overflow-hidden rounded-md border border-white/10 bg-ink-soft text-left"
             >
               <div className="relative aspect-[4/5]">
-                <Image src={item.photoUrl} alt={item.title} fill className="object-cover" sizes="33vw" />
+                <SafeImage src={item.photoUrl} alt={item.title} fill className="object-cover" sizes="33vw" />
               </div>
               <div className="p-3">
                 <p className="font-mono text-[0.65rem] text-muted">{item.date}</p>

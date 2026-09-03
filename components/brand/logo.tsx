@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/media/safe-image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
@@ -20,7 +20,7 @@ export function BrandLogo({
         : { width: 64, height: 64, className: "h-14 w-14" };
 
   const mark = (
-    <Image
+    <SafeImage
       src="/brands/logo.png"
       alt={site.name}
       width={dims.width}

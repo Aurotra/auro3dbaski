@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { NumberField, parseLocaleNumber } from "@/components/calculators/number-field";
+import { NumberField, finiteOrZero, parseLocaleNumber } from "@/components/calculators/number-field";
 import { MeasureLabel } from "@/components/ui/measure-label";
 
 const fits = {
@@ -29,9 +29,9 @@ export function ClearanceCalc() {
   );
 
   const size = parseLocaleNumber(nominal);
-  const base = Number.isFinite(size) ? size : 0;
-  const hole = base + clearance;
-  const shaft = base - clearance;
+  const base = finiteOrZero(size);
+  const hole = finiteOrZero(base + clearance);
+  const shaft = finiteOrZero(base - clearance);
 
   return (
     <div className="rounded-md border border-white/10 bg-ink-soft p-5">

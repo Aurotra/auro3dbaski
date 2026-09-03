@@ -1,8 +1,9 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/media/safe-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { IdeaForm } from "@/components/forms/idea-form";
-import { getSeries, series } from "@/data/series";
+import { MeasureLabel } from "@/components/ui/measure-label";
+import { getSeries, series, seriesEpisodeCount } from "@/data/series";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -37,11 +38,18 @@ export default async function SeriPage({
   return (
     <article className="mx-auto max-w-6xl px-4 py-14">
       <div className="relative mb-8 aspect-[21/9] overflow-hidden rounded-md border border-white/10">
-        <Image src={item.coverUrl} alt={item.title} fill className="object-cover" sizes="100vw" />
+        <SafeImage src={item.coverUrl} alt={item.title} fill className="object-cover" sizes="100vw" />
       </div>
       <h1 className="border-l-4 border-accent pl-4 font-display text-4xl text-text">
         {item.title}
       </h1>
+      <div className="mt-3">
+        <MeasureLabel>
+          {seriesEpisodeCount(item) > 0
+            ? `${seriesEpisodeCount(item)} bl.`
+            : "Yeni Seri"}
+        </MeasureLabel>
+      </div>
       <p className="mt-4 max-w-2xl text-muted">{item.summary}</p>
       <p className="mt-8 text-muted">
         Bu serinin klipleri Instagram’da.{" "}

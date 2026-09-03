@@ -6,10 +6,14 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/cn";
 
 export function ProofCompare() {
+  const item = proofPairs[0];
   const [pair, setPair] = useState(0);
   const [pos, setPos] = useState(50);
   const box = useRef<HTMLDivElement>(null);
-  const item = proofPairs[pair];
+
+  if (!item) return null;
+
+  const active = proofPairs[pair] ?? item;
 
   function move(clientX: number) {
     const el = box.current;
@@ -25,21 +29,23 @@ export function ProofCompare() {
           Ayar değişince parça değişir
         </SectionHeading>
         <div className="mt-8 flex flex-wrap gap-2">
-          {proofPairs.map((p, i) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => setPair(i)}
-              className={cn(
-                "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
-                i === pair
-                  ? "btn-glow border-transparent"
-                  : "border-ink/15 text-ink",
-              )}
-            >
-              {p.title}
-            </button>
-          ))}
+          {proofPairs.length > 1
+            ? proofPairs.map((p, i) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setPair(i)}
+                  className={cn(
+                    "rounded-md border px-3 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.12em]",
+                    i === pair
+                      ? "btn-glow border-transparent"
+                      : "border-ink/15 text-ink",
+                  )}
+                >
+                  {p.title}
+                </button>
+              ))
+            : null}
         </div>
         <div
           ref={box}
@@ -54,15 +60,15 @@ export function ProofCompare() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={item.afterUrl}
-            alt={item.afterLabel}
+            src={active.afterUrl}
+            alt={active.afterLabel}
             className="absolute inset-0 size-full object-cover"
           />
           <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={item.beforeUrl}
-              alt={item.beforeLabel}
+              src={active.beforeUrl}
+              alt={active.beforeLabel}
               className="absolute inset-0 size-full max-w-none object-cover"
               style={{ width: box.current ? `${box.current.clientWidth}px` : "100%" }}
             />
@@ -77,7 +83,7 @@ export function ProofCompare() {
           </div>
         </div>
         <p className="mt-3 font-mono text-xs text-ink/50">
-          Sürükle. Sol: {item.beforeLabel} · Sağ: {item.afterLabel}
+          Sürükle. Sol: {active.beforeLabel} · Sağ: {active.afterLabel}
         </p>
       </div>
     </section>
