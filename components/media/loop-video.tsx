@@ -12,7 +12,7 @@ export function LoopVideo({
   sizes = "100vw",
 }: {
   src: string;
-  poster: string;
+  poster?: string;
   className?: string;
   priority?: boolean;
   sizes?: string;
@@ -53,15 +53,19 @@ export function LoopVideo({
   }, [reduceMotion, src]);
 
   return (
-    <div className={cn("overflow-hidden", className)}>
-      <SafeImage
-        src={poster}
-        alt=""
-        fill
-        priority={priority}
-        sizes={sizes}
-        className="object-cover"
-      />
+    <div className={cn("relative overflow-hidden", className)}>
+      {poster ? (
+        <SafeImage
+          src={poster}
+          alt=""
+          fill
+          priority={priority}
+          sizes={sizes}
+          className="object-cover"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-ink-soft" />
+      )}
       {reduceMotion ? null : (
         <video
           ref={videoRef}

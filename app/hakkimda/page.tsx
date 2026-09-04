@@ -5,6 +5,7 @@ import { capabilities, timeline, workshopShots } from "@/data/workshop";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SafeImage } from "@/components/media/safe-image";
+import { LoopVideo } from "@/components/media/loop-video";
 
 export const metadata = pageMeta({
   title: "Hakkımızda",
@@ -141,20 +142,29 @@ export default function HakkimdaPage() {
         Atölyeden çıkanlar
       </h2>
       <p className="mt-2 text-sm text-muted">
-        Kendi çekimlerimiz — lamba, keman, tekne, takı kutusu, Anı Müzesi, prototip.
+        Kendi çekimlerimiz — rölyef harita, lamba, keman, tekne, takı kutusu, Anı Müzesi, prototip.
       </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {workshopShots.map((shot) => (
           <li key={shot.id}>
             <figure className="overflow-hidden rounded-md border border-white/10 bg-ink-soft">
               <div className="relative aspect-[3/4]">
-                <SafeImage
-                  src={shot.src}
-                  alt={shot.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+                {shot.videoSrc ? (
+                  <LoopVideo
+                    src={shot.videoSrc}
+                    poster={shot.src}
+                    className="absolute inset-0"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <SafeImage
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                )}
               </div>
               <figcaption className="px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-accent">
                 {shot.caption}

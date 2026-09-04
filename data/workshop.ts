@@ -65,7 +65,22 @@ export const capabilities: Capability[] = [
   },
 ];
 
-export const workshopShots = [
+export type WorkshopShot = {
+  id: string;
+  src: string;
+  alt: string;
+  caption: string;
+  videoSrc?: string;
+};
+
+export const workshopShots: WorkshopShot[] = [
+  {
+    id: "harita",
+    src: "/images/uretim.webp",
+    videoSrc: "/videos/uretim.mp4",
+    alt: "Çok renkli 3D baskı Türkiye rölyef haritası, yazıcı tablasında",
+    caption: "Rölyef harita",
+  },
   {
     id: "lambalar",
     src: "/images/workshop/lambalar.webp",
@@ -114,7 +129,7 @@ export const workshopShots = [
     alt: "Cıvata, conta ve kumpasla ölçü kontrolü yapılan prototip yığın",
     caption: "Prototip",
   },
-] as const;
+];
 
 export type Milestone = {
   id: string;
