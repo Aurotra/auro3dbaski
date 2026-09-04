@@ -21,9 +21,9 @@ export const reelCards: ReelCard[] = [
   },
   {
     id: "sardalya",
-    title: "Sardalya",
+    title: "Takı Kutusu",
     src: "/images/workshop/sardalya.webp",
-    alt: "Sardalya takı kutuları",
+    alt: "Sardalya formunda takı kutuları",
   },
   {
     id: "ani",

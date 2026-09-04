@@ -93,8 +93,8 @@ export const workshopShots = [
   {
     id: "sardalya",
     src: "/images/workshop/sardalya.webp",
-    alt: "Not Sardines takı kutuları, dört renk",
-    caption: "Sardalya",
+    alt: "Sardalya formunda takı kutuları, dört renk",
+    caption: "Takı Kutusu",
   },
   {
     id: "ani-muzesi",

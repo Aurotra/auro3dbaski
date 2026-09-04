@@ -141,7 +141,7 @@ export default function HakkimdaPage() {
         Atölyeden çıkanlar
       </h2>
       <p className="mt-2 text-sm text-muted">
-        Kendi çekimlerimiz — lamba, keman, tekne, sardalya, Anı Müzesi, prototip.
+        Kendi çekimlerimiz — lamba, keman, tekne, takı kutusu, Anı Müzesi, prototip.
       </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {workshopShots.map((shot) => (
