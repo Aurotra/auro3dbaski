@@ -19,7 +19,6 @@ export function LoopVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -31,29 +30,20 @@ export function LoopVideo({
 
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || reduceMotion) {
-      setPlaying(false);
-      return;
-    }
+    if (!el || reduceMotion) return;
     el.muted = true;
-    const markPlaying = () => setPlaying(true);
     const play = () => {
-      void el.play().then(markPlaying).catch(() => {
+      void el.play().catch(() => {
         /* autoplay kesilirse poster kalır */
       });
     };
-    el.addEventListener("playing", markPlaying);
     el.addEventListener("canplay", play);
-    if (!el.paused && el.readyState >= 2) markPlaying();
-    else play();
-    return () => {
-      el.removeEventListener("playing", markPlaying);
-      el.removeEventListener("canplay", play);
-    };
+    if (el.readyState >= 2) play();
+    return () => el.removeEventListener("canplay", play);
   }, [reduceMotion, src]);
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("overflow-hidden", className)}>
       {poster ? (
         <SafeImage
           src={poster}
@@ -69,10 +59,7 @@ export function LoopVideo({
       {reduceMotion ? null : (
         <video
           ref={videoRef}
-          className={cn(
-            "absolute inset-0 size-full object-cover transition-opacity duration-500",
-            playing ? "opacity-100" : "opacity-0",
-          )}
+          className="absolute inset-0 size-full object-cover"
           src={src}
           muted
           loop
