@@ -87,7 +87,7 @@ async function fromGraphApi(): Promise<InstagramVideo[]> {
     }),
   );
 
-  return ranked.sort((a, b) => b.viewCount - a.viewCount).slice(0, 5);
+  return ranked.sort((a, b) => b.viewCount - a.viewCount).slice(0, 6);
 }
 
 function parseFromHtml(html: string): InstagramVideo[] {
@@ -143,7 +143,7 @@ function parseFromHtml(html: string): InstagramVideo[] {
 
   return [...byId.values()]
     .sort((a, b) => b.viewCount - a.viewCount)
-    .slice(0, 5);
+    .slice(0, 6);
 }
 
 async function fromPublicHtml(): Promise<InstagramVideo[]> {
@@ -170,6 +170,6 @@ async function fetchInstagramVideosUncached(): Promise<InstagramVideo[]> {
 
 export const getInstagramVideos = unstable_cache(
   fetchInstagramVideosUncached,
-  ["instagram-videos-v1"],
+  ["instagram-videos-v2"],
   { revalidate: 3600 },
 );

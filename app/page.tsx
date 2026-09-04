@@ -39,7 +39,7 @@ export default async function HomePage() {
       <IntroBlock />
       <StatsStrip totalFollowers={stats.totalFollowers} />
       <ProductStrip products={catalog.products.slice(0, 4)} />
-      <SeriesGrid />
+      <SeriesGrid videos={instagramVideos} />
       <ClosingCta />
     </>
   );
