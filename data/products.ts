@@ -4,6 +4,8 @@ export type Product = {
   id: string;
   title: string;
   price: string;
+  originalPrice?: string;
+  discount?: string;
   imageUrl: string;
   shopierUrl: string;
   description?: string;
@@ -55,6 +57,8 @@ const DESCRIPTION_BY_ID: Record<string, string> = {
   "42129542": "LUMİRA ambiyans ışığı. Atölye lambası.",
   "41369888": "Kızılay tabelası anahtarlık ölçeği.",
   "41369851": "Kızılay tabelası magnet.",
+  "50535760": "Eriyen damla formunda duvar rafı.",
+  "50683470": "Lego brick görünümlü çekmeceli masaüstü organizer. 2'li set.",
 };
 
 const VARIANTS_BY_ID: Record<string, string[]> = {
@@ -83,77 +87,132 @@ export function decorateProduct(product: Product): Product {
 
 /**
  * Shopier canlı çekimi düşerse kullanılan son doğrulanmış vitrin.
- * Mağazadaki 18 ürün — uydurma kart yok.
+ * Fiyatlar Shopier data-price alanından; uydurma kart yok.
  */
 export const products: Product[] = [
   {
     id: "41163104",
     title: "Ankara Kızılay Tabelası",
-    price: "199,00 TL",
+    price: "259,00 TL",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_624d0c35d822ecea1f17d66aa34325b9.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/41163104",
   },
   {
+    id: "42129542",
+    title: "LUMİRA - Ambiyans Işığı",
+    price: "1.000,00 TL",
+    originalPrice: "1.500,00 TL",
+    discount: "%33 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_dd6520698df78aedb09701d01dd909d6.jpeg",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/42129542",
+  },
+  {
+    id: "43559813",
+    title: "Kişiye Özel Anılar Müzesi – 3D Çerçeve",
+    price: "2.000,00 TL",
+    originalPrice: "2.750,00 TL",
+    discount: "%27 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_c5491d60440a52624bcb2ad13aa6b842.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/43559813",
+  },
+  {
+    id: "50535760",
+    title: "Eriyen Damla Duvar Rafı - 1 Adet",
+    price: "489,00 TL",
+    originalPrice: "600,00 TL",
+    discount: "%19 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_c401b1a9e2ca3138e49a41dffc13c13f.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/50535760",
+  },
+  {
     id: "50347929",
     title: "GTA VI - 3D Dekorasyon Disk",
-    price: "299,00 TL",
+    price: "319,00 TL",
+    originalPrice: "650,00 TL",
+    discount: "%51 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_cd60f76c0aebabdaf745f0b6d5a84148.jpeg",
     shopierUrl: "https://www.shopier.com/auro3dbaski/50347929",
   },
   {
-    id: "49717093",
-    title: "Sardalya Takı Kutusu | Metalik",
-    price: "459,00 TL",
+    id: "50683470",
+    title:
+      "Lego Brick Görünümlü Çekmeceli Masaüstü Organizer Seti - 2'li Set (Mor 4x2 + Beyaz 2x2)",
+    price: "1.299,00 TL",
+    originalPrice: "1.599,00 TL",
+    discount: "%19 İndirim",
     imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_fbe0e3b82618d541d2bdcf1709ac4285.png",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/49717093",
-  },
-  {
-    id: "49717068",
-    title: "Sardalya Takı Kutusu | Mor",
-    price: "459,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_d1573df1f67ace35b63516b03bc83ac2.png",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/49717068",
-  },
-  {
-    id: "49379931",
-    title: "Sardalya Takı Kutusu | Krem & Soft Pembe",
-    price: "459,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_3d49453b38f2c899741208e68192e724.png",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/49379931",
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_1da700636c6101e03162b619c02a8472.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/50683470",
   },
   {
     id: "49379907",
     title: "Sardalya Takı Kutusu | Krem & Pembe",
     price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_ceb641ea55d87e4b90c2c2510754604a.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/49379907",
   },
   {
-    id: "49379876",
-    title: "Sardalya Takı Kutusu | Mavi",
-    price: "499,00 TL",
+    id: "49379931",
+    title: "Sardalya Takı Kutusu | Krem & Soft Pembe",
+    price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
     imageUrl:
-      "https://cdn.shopier.app/pictures_large/Auro3dbaski_b83d4424e8766b7674242d77f18e2e2b.png",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/49379876",
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_3d49453b38f2c899741208e68192e724.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49379931",
   },
   {
     id: "49379845",
     title: "Sardalya Takı Kutusu | Pembe",
     price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_11bae433fcd3a5ccfd908a2a660f95cf.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/49379845",
   },
   {
+    id: "49717068",
+    title: "Sardalya Takı Kutusu | Mor",
+    price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_d1573df1f67ace35b63516b03bc83ac2.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49717068",
+  },
+  {
+    id: "49717093",
+    title: "Sardalya Takı Kutusu | Metalik",
+    price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_fbe0e3b82618d541d2bdcf1709ac4285.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49717093",
+  },
+  {
+    id: "49379876",
+    title: "Sardalya Takı Kutusu | Mavi",
+    price: "459,00 TL",
+    originalPrice: "599,00 TL",
+    discount: "%23 İndirim",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_large/Auro3dbaski_b83d4424e8766b7674242d77f18e2e2b.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/49379876",
+  },
+  {
     id: "48304917",
     title: "MECCHA CHAMELEON 6'lı Poz Seti",
-    price: "379,00 TL",
+    price: "399,00 TL",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_9db8a67e87fb5bca58115ba18d7531d3.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/48304917",
@@ -162,6 +221,8 @@ export const products: Product[] = [
     id: "48020449",
     title: "3D Baskı Nissan Skyline RB26 Motor",
     price: "2.899,00 TL",
+    originalPrice: "3.500,00 TL",
+    discount: "%17 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_large/Auro3dbaski_5afe9eb02c7e6e15da11ae0272cec0ab.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/48020449",
@@ -169,7 +230,9 @@ export const products: Product[] = [
   {
     id: "47251112",
     title: "Sihirli Ödeme Asası",
-    price: "449,00 TL",
+    price: "469,00 TL",
+    originalPrice: "519,00 TL",
+    discount: "%10 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_c625fd487d34cef27db31f1b7cc73fed.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/47251112",
@@ -185,39 +248,25 @@ export const products: Product[] = [
   {
     id: "43560642",
     title: "6 Çerçeve, 6 Figür, 2 Eser",
-    price: "449,00 TL",
+    price: "519,00 TL",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_14e583fa139a331aaf11b94f879092ef.png",
     shopierUrl: "https://www.shopier.com/auro3dbaski/43560642",
   },
   {
-    id: "43559813",
-    title: "Kişiye Özel Anılar Müzesi – 3D Çerçeve",
-    price: "1.699,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_c5491d60440a52624bcb2ad13aa6b842.png",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/43559813",
-  },
-  {
     id: "42365663",
     title: "Yılbaşı Temalı Stitch",
-    price: "799,00 TL",
+    price: "899,00 TL",
+    originalPrice: "1.200,00 TL",
+    discount: "%25 İndirim",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_65943b4b8934cea5da86d0c16095cb73.jpeg",
     shopierUrl: "https://www.shopier.com/auro3dbaski/42365663",
   },
   {
-    id: "42129542",
-    title: "LUMİRA - Ambiyans Işığı",
-    price: "799,00 TL",
-    imageUrl:
-      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_dd6520698df78aedb09701d01dd909d6.jpeg",
-    shopierUrl: "https://www.shopier.com/auro3dbaski/42129542",
-  },
-  {
     id: "41369888",
     title: "Kızılay Tabelası Anahtarlık",
-    price: "99,00 TL",
+    price: "159,00 TL",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_88b1327abc1e65f91ec88e2f03a49e11.jpeg",
     shopierUrl: "https://www.shopier.com/auro3dbaski/41369888",
@@ -225,7 +274,7 @@ export const products: Product[] = [
   {
     id: "41369851",
     title: "Kızılay Tabelası Magnet",
-    price: "99,00 TL",
+    price: "159,00 TL",
     imageUrl:
       "https://cdn.shopier.app/pictures_mid/Auro3dbaski_f8285d961f8bebcf3b39644c2e682d92.jpeg",
     shopierUrl: "https://www.shopier.com/auro3dbaski/41369851",

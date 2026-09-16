@@ -21,7 +21,7 @@ export default function Page() {
         {mediaKit.channel}
       </p>
       <p className="mt-4 max-w-3xl text-muted">{mediaKit.audience}</p>
-      <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-3 sm:grid-cols-2">
         <Card>
           <p className="text-sm text-muted">Topluluk</p>
           <p className="mt-2 font-mono text-2xl text-accent-2">{mediaKit.followers}</p>
@@ -29,14 +29,6 @@ export default function Page() {
         <Card>
           <p className="text-sm text-muted">Toplam izlenme</p>
           <p className="mt-2 font-mono text-lg text-accent-2">{mediaKit.reach}</p>
-        </Card>
-        <Card>
-          <p className="text-sm text-muted">Ort. izlenme</p>
-          <p className="mt-2 text-sm text-text">{mediaKit.avgViews}</p>
-        </Card>
-        <Card>
-          <p className="text-sm text-muted">Demografi</p>
-          <p className="mt-2 text-sm text-text">{mediaKit.demo}</p>
         </Card>
       </div>
       <h2 className="mt-14 border-l-4 border-accent pl-4 font-display text-2xl text-text">

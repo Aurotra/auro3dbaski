@@ -12,7 +12,7 @@ import { getSocialStatsSafe } from "@/lib/social-stats";
 import { site } from "@/lib/site";
 import type { Metadata } from "next";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   alternates: { canonical: site.url },

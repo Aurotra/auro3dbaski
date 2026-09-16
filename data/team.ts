@@ -60,6 +60,9 @@ export const team: TeamMember[] = [
 
 export const intro = {
   heading: "Atölyenin içinden.",
+  /** Gerçek atölye fotoğrafı gelince örn. "/images/workshop/filo.webp" */
+  photoUrl: null as string | null,
+  photoAlt: "Auro 3D Baskı atölyesi",
   body: [
     "Auro 3D Baskı; masaüstü eklemeli imalat teknolojilerini, malzeme bilimini ve tasarım ipuçlarını doğrudan atölye deneyimiyle sunan bir dijital içerik ve inovasyon kanalıdır.",
     "FDM ve reçine baskı süreçlerindeki dilimleme püf noktalarından endüstriyel termoplastiklerin sınırlarına kadar merak edilen tüm detayları şeffaf bir dille paylaşıyoruz.",

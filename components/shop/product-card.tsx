@@ -22,6 +22,11 @@ export function ProductCard({ product }: { product: Product }) {
             className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,transparent_92%,rgb(34_211_238_/_0.28)_92%,transparent_100%)] bg-[length:100%_10px] opacity-0 mix-blend-screen motion-safe:transition-opacity motion-safe:group-hover:opacity-100"
           />
           <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-accent" />
+          {product.discount ? (
+            <span className="absolute right-2 top-2 rounded-md bg-violet px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-white">
+              {product.discount}
+            </span>
+          ) : null}
         </div>
         <div className="flex flex-1 flex-col p-4">
           <h2 className="font-display text-xl leading-snug text-text">{product.title}</h2>
@@ -35,7 +40,14 @@ export function ProductCard({ product }: { product: Product }) {
               ))}
             </div>
           ) : null}
-          <p className="mt-2 font-mono text-lg tabular-nums text-accent-2">{product.price}</p>
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <p className="font-mono text-lg tabular-nums text-accent-2">{product.price}</p>
+            {product.originalPrice ? (
+              <p className="font-mono text-sm tabular-nums text-muted line-through">
+                {product.originalPrice}
+              </p>
+            ) : null}
+          </div>
           <a
             href={product.shopierUrl}
             target="_blank"

@@ -135,9 +135,6 @@ export const mediaKit = {
   channel: "Auro 3D Baskı",
   audience:
     "3D yazıcı kullanıcıları, makine / mekatronik / otomotiv mühendisleri, maker toplulukları, endüstriyel tasarımcılar ve teknoloji meraklıları.",
-  demo: "%82 erkek / %18 kadın; en yoğun yaş aralığı 18–34 (%68). Ağırlıklı kitle: Türkiye, Almanya, Azerbaycan.",
-  avgViews:
-    "Short / Reels başına 10.000–25.000 görüntülenme; öne çıkan rehber içeriklerde 500.000+ izlenme.",
   followers: formatGroupedPlus(followersStat),
   reach: `${formatGroupedPlus(viewsStat)} toplam izlenme`,
   /** PDF hazır olunca örn. "/docs/auro3dbaski-medya-kiti.pdf" */

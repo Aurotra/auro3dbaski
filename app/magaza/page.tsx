@@ -4,7 +4,7 @@ import { pageMeta } from "@/lib/seo";
 import { getShopierProducts } from "@/lib/shopier";
 import { site } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export const metadata = pageMeta({
   title: "Mağaza",
