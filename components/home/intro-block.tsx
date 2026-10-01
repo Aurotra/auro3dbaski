@@ -6,7 +6,7 @@ export function IntroBlock() {
   return (
     <section className="bg-paper px-4 py-16 text-ink">
       <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-ink/10 bg-ink-soft">
+        <div className="relative aspect-[9/16] overflow-hidden rounded-md border border-ink/10 bg-ink-soft">
           {intro.photoUrl ? (
             <SafeImage
               src={intro.photoUrl}
