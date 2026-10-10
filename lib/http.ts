@@ -8,7 +8,13 @@ const BROWSER_HEADERS = {
 
 export async function fetchText(
   url: string,
-  options?: { timeoutMs?: number; accept?: string; headers?: Record<string, string> },
+  options?: {
+    timeoutMs?: number;
+    accept?: string;
+    headers?: Record<string, string>;
+    /** Next veri önbelleği. Verilmezse istek önbelleğe yazılmaz. */
+    revalidate?: number;
+  },
 ): Promise<string | null> {
   const timeoutMs = options?.timeoutMs ?? 18_000;
   const controller = new AbortController();
@@ -18,7 +24,9 @@ export async function fetchText(
     const res = await fetch(url, {
       signal: controller.signal,
       redirect: "follow",
-      cache: "no-store",
+      ...(options?.revalidate != null
+        ? { next: { revalidate: options.revalidate } }
+        : { cache: "no-store" as const }),
       headers: {
         ...BROWSER_HEADERS,
         ...(options?.accept ? { Accept: options.accept } : {}),

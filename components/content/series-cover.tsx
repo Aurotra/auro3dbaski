@@ -1,4 +1,5 @@
 import { SafeImage } from "@/components/media/safe-image";
+import { cn } from "@/lib/cn";
 
 export function SeriesCover({
   src,
@@ -6,12 +7,14 @@ export function SeriesCover({
   sizes,
   width,
   height,
+  className,
 }: {
   src?: string;
   title: string;
   sizes: string;
   width?: number;
   height?: number;
+  className?: string;
 }) {
   if (src && width && height) {
     return (
@@ -20,7 +23,7 @@ export function SeriesCover({
         alt={`${title} kapak görseli`}
         width={width}
         height={height}
-        className="h-auto w-full"
+        className={cn("h-auto w-full", className)}
         sizes={sizes}
       />
     );
@@ -32,7 +35,7 @@ export function SeriesCover({
         src={src}
         alt={`${title} kapak görseli`}
         fill
-        className="object-cover"
+        className={cn("object-cover", className)}
         sizes={sizes}
       />
     );

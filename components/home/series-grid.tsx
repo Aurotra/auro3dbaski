@@ -55,34 +55,33 @@ export function SeriesGrid({ videos }: { videos: InstagramVideo[] }) {
             </a>
           </>
         ) : (
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {series.map((item) => {
               const count = seriesEpisodeCount(item);
               return (
-                <li key={item.slug}>
+                <li key={item.slug} className="h-full">
                   <Link
                     href={`/icerikler/${item.slug}`}
-                    className="block overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-transform duration-300 hover:-translate-y-0.5"
+                    className="flex h-full flex-col overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-transform duration-300 hover:-translate-y-0.5"
                   >
-                    <div
-                      className={
-                        item.coverFrame === "reel"
-                          ? "mx-auto w-full max-w-[280px]"
-                          : "relative aspect-[4/3]"
-                      }
-                    >
+                    <div className="relative aspect-[4/3] shrink-0">
                       <SeriesCover
                         src={item.coverUrl}
                         title={item.title}
                         sizes="(max-width: 640px) 100vw, 33vw"
-                        width={item.coverFrame === "reel" ? item.coverWidth : undefined}
-                        height={item.coverFrame === "reel" ? item.coverHeight : undefined}
+                        className={
+                          item.coverFrame === "reel"
+                            ? "object-[center_18%]"
+                            : undefined
+                        }
                       />
                     </div>
-                    <div className="p-4">
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-display text-xl text-text">{item.title}</h3>
-                        <MeasureLabel>
+                    <div className="flex flex-1 flex-col p-4">
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-display text-xl leading-snug text-text">
+                          {item.title}
+                        </h3>
+                        <MeasureLabel className="shrink-0">
                           {count > 0 ? `${count} bl.` : "Yeni Seri"}
                         </MeasureLabel>
                       </div>

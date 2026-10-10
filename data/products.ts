@@ -91,6 +91,14 @@ export function decorateProduct(product: Product): Product {
  */
 export const products: Product[] = [
   {
+    id: "51574530",
+    title: "SAVAŞCI KEDİ",
+    price: "650,00 TL",
+    imageUrl:
+      "https://cdn.shopier.app/pictures_mid/Auro3dbaski_8056b143a4039106e33174667391a3e6.png",
+    shopierUrl: "https://www.shopier.com/auro3dbaski/51574530",
+  },
+  {
     id: "41163104",
     title: "Ankara Kızılay Tabelası",
     price: "259,00 TL",

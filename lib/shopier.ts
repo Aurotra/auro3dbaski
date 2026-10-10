@@ -103,7 +103,14 @@ async function fetchShopierHtml(): Promise<string | null> {
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const html = await fetchText(url, {
         timeoutMs: 20_000,
-        headers: { Referer: "https://www.shopier.com/" },
+        revalidate: SHOPIER_REVALIDATE_SECONDS,
+        headers: {
+          Referer: "https://www.shopier.com/",
+          "Sec-Fetch-Dest": "document",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Site": "none",
+          "Upgrade-Insecure-Requests": "1",
+        },
       });
       if (html?.includes("shopier--product-list-section")) return html;
     }
@@ -123,15 +130,26 @@ async function fetchShopierUncached(): Promise<ShopierCatalog> {
 
 const getShopierProductsCached = unstable_cache(
   fetchShopierUncached,
-  ["shopier-products-v4"],
+  ["shopier-products-v5"],
   { revalidate: SHOPIER_REVALIDATE_SECONDS, tags: [SHOPIER_CACHE_TAG] },
 );
+
+function fallbackCatalog(): ShopierCatalog {
+  return {
+    products: fallbackProducts.map(decorateProduct),
+    source: "fallback",
+  };
+}
 
 export async function getShopierProducts(): Promise<ShopierCatalog> {
   try {
     return await getShopierProductsCached();
-  } catch {
-    return { products: fallbackProducts, source: "fallback" };
+  } catch (error) {
+    console.error(
+      "shopier catalog fell back",
+      error instanceof Error ? error.message : error,
+    );
+    return fallbackCatalog();
   }
 }
 
@@ -141,7 +159,11 @@ export async function syncShopierCatalog(): Promise<ShopierCatalog> {
   revalidatePath("/");
   try {
     return await fetchShopierUncached();
-  } catch {
-    return { products: fallbackProducts, source: "fallback" };
+  } catch (error) {
+    console.error(
+      "shopier sync fell back",
+      error instanceof Error ? error.message : error,
+    );
+    return fallbackCatalog();
   }
 }
