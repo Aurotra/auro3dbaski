@@ -64,11 +64,19 @@ export function SeriesGrid({ videos }: { videos: InstagramVideo[] }) {
                     href={`/icerikler/${item.slug}`}
                     className="block overflow-hidden rounded-md border border-white/10 bg-ink-soft transition-transform duration-300 hover:-translate-y-0.5"
                   >
-                    <div className="relative aspect-[4/3]">
+                    <div
+                      className={
+                        item.coverFrame === "reel"
+                          ? "mx-auto w-full max-w-[280px]"
+                          : "relative aspect-[4/3]"
+                      }
+                    >
                       <SeriesCover
                         src={item.coverUrl}
                         title={item.title}
                         sizes="(max-width: 640px) 100vw, 33vw"
+                        width={item.coverFrame === "reel" ? item.coverWidth : undefined}
+                        height={item.coverFrame === "reel" ? item.coverHeight : undefined}
                       />
                     </div>
                     <div className="p-4">

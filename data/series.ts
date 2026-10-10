@@ -8,6 +8,10 @@ export type Series = {
   title: string;
   summary: string;
   coverUrl?: string;
+  /** Dikey Reels karesi. Geniş banner’da ortadan kırpılmaz. */
+  coverFrame?: "reel";
+  coverWidth?: number;
+  coverHeight?: number;
   episodes: Episode[];
 };
 
@@ -16,12 +20,20 @@ export const series: Series[] = [
     slug: "bambu-studio-101",
     title: "Bambu Studio 101",
     summary: "Dilimleyicide hangi ayarın ne işe yaradığı — tahminsiz.",
+    coverUrl: "/images/series/bambu-studio-101.webp",
+    coverFrame: "reel",
+    coverWidth: 472,
+    coverHeight: 842,
     episodes: [],
   },
   {
     slug: "makerworld-101",
     title: "MakerWorld 101",
     summary: "Modelleri indirmeden önce bakılacak yerler.",
+    coverUrl: "/images/series/makerworld-101.webp",
+    coverFrame: "reel",
+    coverWidth: 472,
+    coverHeight: 922,
     episodes: [],
   },
   {

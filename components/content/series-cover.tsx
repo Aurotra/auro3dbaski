@@ -4,11 +4,28 @@ export function SeriesCover({
   src,
   title,
   sizes,
+  width,
+  height,
 }: {
   src?: string;
   title: string;
   sizes: string;
+  width?: number;
+  height?: number;
 }) {
+  if (src && width && height) {
+    return (
+      <SafeImage
+        src={src}
+        alt={`${title} kapak görseli`}
+        width={width}
+        height={height}
+        className="h-auto w-full"
+        sizes={sizes}
+      />
+    );
+  }
+
   if (src) {
     return (
       <SafeImage
